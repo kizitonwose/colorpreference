@@ -74,7 +74,7 @@ Now you can use the custom attributes.
 ### Attributes
 
 |attribute name|description|default value|
-|:-:|:-:|
+|:-:|:-:|:-:|
 |colorShape|The shape of the color view(`circle` or `square`)| `circle`|
 |colorChoices|An array of colors to show on the dialog| An internal array |
 |viewSize|The size of the color view(`normal` or `large`) |`large`|
