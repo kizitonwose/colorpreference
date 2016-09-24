@@ -2,7 +2,8 @@
 
 A custom preference item for easy implementation of a color picker in the preference screen. You can use the inbuilt picker or any other color picker of your choice.
 
-[![Platform](http://img.shields.io/badge/platform-android-brightgreen.svg?style=flat)](http://developer.android.com/index.html)
+[![](https://jitpack.io/v/kizitonwose/colorpreference.svg)](https://jitpack.io/#kizitonwose/colorpreference) 
+[![Platform](http://img.shields.io/badge/platform-android-brightgreen.svg?style=flat)](http://developer.android.com/index.html) 
 [![License](http://img.shields.io/badge/license-apache2.0-lightgrey.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 
 
@@ -11,7 +12,7 @@ A custom preference item for easy implementation of a color picker in the prefer
 ![ExampleMain][ExampleMain] ![ExampleDefault][ExampleDefault]
 ![ExampleDefault2][ExampleDefault2]
 
-Get the sample apk [here]() 
+Get the sample apk [here](https://github.com/kizitonwose/colorpreference/releases/download/1.0.0/sample-1.0.0.apk) 
 Also checkout the sample module [here](/sample/)
 
 ## Setup
