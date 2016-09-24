@@ -9,7 +9,7 @@ A custom preference item for easy implementation of a color picker in the prefer
 ## Preview
 
 ![ExampleMain][ExampleMain] ![ExampleDefault][ExampleDefault]
-![ExampleCustom][ExampleDefault2]
+![ExampleDefault2][ExampleDefault2]
 
 Get the sample apk [here]() 
 Also checkout the sample module [here](/sample/)
@@ -18,15 +18,20 @@ Also checkout the sample module [here](/sample/)
 
 ### Gradle
 
-Add the dependency in your `build.gradle`
+Add this to your project level `build.gradle`:
 
 ```groovy
-repositories {
-    maven {
-		 url "https://jitpack.io"
-	 }
+allprojects {
+ repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+ }
 }
+```
 
+Add this to your app `build.gradle`:
+
+```groovy
 dependencies {
 	compile 'com.github.kizitonwose:colorpreference:1.0.0'
 }
@@ -92,7 +97,7 @@ The custom picker in the sample uses the [Lobster Color Picker](https://github.c
 
 ## Credits
 
-Original code belongs to @romannurik of @google, I did some additions like the view size, color shape and the ability to use a custom color picker(more to come). It's also now available as a Gradle dependency for easy usage.
+Original code belongs to [Roman Nurik](https://github.com/romannurik) of [Google](https://github.com/google), I did some additions like the view size, color shape and the ability to use a custom color picker(more to come). It's also now available as a Gradle dependency for easy usage.
 
 ## License
 
