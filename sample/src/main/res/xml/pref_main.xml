@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory android:title="COLORS">
+
+        <com.kizitonwose.colorpreference.ColorPreference
+            android:defaultValue="@color/color_1"
+            android:key="color_pref_round"
+            android:summary="An example of using the rounded color view"
+            android:title="Round color sample"
+            app:colorChoices="@array/color_choices"
+            app:colorShape="circle" />
+
+        <com.kizitonwose.colorpreference.ColorPreference
+            android:defaultValue="@android:color/white"
+            android:key="color_pref_square"
+            android:summary="An example of using the square color view"
+            android:title="Square color sample"
+            app:colorShape="square" />
+
+        <com.kizitonwose.colorpreference.ColorPreference
+            android:defaultValue="@color/colorAccent"
+            android:key="color_pref_lobster"
+            android:summary="An example of using a different picker"
+            android:title="Custom picker sample"
+            app:colorShape="circle"
+            app:showDialog="false" />
+
+        <com.kizitonwose.colorpreference.ColorPreference
+            android:defaultValue="@android:color/white"
+            android:key="color_pref_circle_large"
+            android:summary="An example of using the large circle color view"
+            android:title="Large circle sample"
+            app:colorShape="circle"
+            app:viewSize="large" />
+        <com.kizitonwose.colorpreference.ColorPreference
+            android:defaultValue="@color/color_2"
+            android:key="color_pref_square_large"
+            android:summary="An example of using the large square color view"
+            android:title="Large square sample"
+            app:colorChoices="@array/color_choices"
+            app:colorShape="square"
+            app:viewSize="large" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

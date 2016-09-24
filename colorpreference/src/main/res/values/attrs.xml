@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--<attr name="itemLayout" format="reference" />-->
+    <attr name="colorChoices" format="reference" />
+    <attr name="numColumns" format="integer" />
+    <attr name="showDialog" format="boolean"/>
+    <attr name="colorShape" format="enum">
+        <enum name="circle" value="1" />
+        <enum name="square" value="2" />
+    </attr>
+    <attr name="viewSize" format="enum">
+        <enum name="normal" value="1" />
+        <enum name="large" value="2" />
+    </attr>
+
+
+    <declare-styleable name="ColorPreference">
+        <attr name="colorChoices" />
+        <attr name="numColumns" />
+        <attr name="colorShape"/>
+        <attr name="viewSize"/>
+        <attr name="showDialog"/>
+
+    </declare-styleable>
+
+
+</resources>
