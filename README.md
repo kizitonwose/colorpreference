@@ -2,17 +2,17 @@
 
 A custom preference item for easy implementation of a color picker in the preference screen. You can use the inbuilt picker or any other color picker of your choice.
 
-[![](https://jitpack.io/v/kizitonwose/colorpreference.svg)](https://jitpack.io/#kizitonwose/colorpreference) 
-[![Platform](http://img.shields.io/badge/platform-android-brightgreen.svg?style=flat)](http://developer.android.com/index.html) 
-[![License](http://img.shields.io/badge/license-apache2.0-lightgrey.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
+[![JitPack](https://jitpack.io/v/kizitonwose/colorpreference.svg)](https://jitpack.io/#kizitonwose/colorpreference) 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Color%20Preference-brightgreen.svg)](https://android-arsenal.com/details/1/4401) 
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 
 ## Preview
 
-![ExampleMain][ExampleMain] ![ExampleDefault][ExampleDefault]
-![ExampleDefault2][ExampleDefault2]
+<img src="/art/screenshot1.png" alt="ExampleMain" width="240"> <img src="/art/screenshot2.png" alt="ExampleCircle" width="240"> <img src="/art/screenshot3.png" alt="ExampleSquare" width="240">
 
 Get the sample apk [here](https://github.com/kizitonwose/colorpreference/releases/download/1.0.0/sample-1.0.0.apk) 
+
 Also checkout the sample module [here](/sample/)
 
 ## Setup
@@ -118,8 +118,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
-[ExampleMain]: /art/screenshot1.png
-[ExampleDefault]: /art/screenshot2.png
-[ExampleDefault2]: /art/screenshot3.png
-
