@@ -8,7 +8,7 @@
 
         <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
             android:defaultValue="@color/color_1"
-            android:key="color_pref_round_compat"
+            android:key="color_pref_circle_compat"
             android:summary="An example of using the circle color view"
             android:title="Round color sample"
             app:colorChoices="@array/color_choices"

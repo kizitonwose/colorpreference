@@ -1,23 +1,15 @@
 package com.kizitonwose.colorpreference;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.preference.Preference;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.GridLayout;
 
 
-public class ColorPreference extends Preference {
+public class ColorPreference extends Preference implements ColorDialog.OnColorSelectedListener{
     private int[] mColorChoices = {};
     private int mValue = 0;
     private int mItemLayoutId = R.layout.pref_color_layout;
@@ -91,8 +83,8 @@ public class ColorPreference extends Preference {
         super.onClick();
 
         if (showDialog) {
-            ColorDialogFragment fragment = ColorDialogFragment.newInstance();
-            fragment.setPreference(this);
+            ColorDialog fragment = ColorDialog.newInstance(mNumColumns, mColorShape, mColorChoices, getValue());
+            fragment.setOnColorSelectedListener(this);
 
             Activity activity = (Activity) getContext();
             activity.getFragmentManager().beginTransaction()
@@ -104,13 +96,15 @@ public class ColorPreference extends Preference {
     @Override
     protected void onAttachedToActivity() {
         super.onAttachedToActivity();
+
+        //helps during activity re-creation
         if (showDialog) {
             Activity activity = (Activity) getContext();
-            ColorDialogFragment fragment = (ColorDialogFragment) activity
+            ColorDialog fragment = (ColorDialog) activity
                     .getFragmentManager().findFragmentByTag(getFragmentTag());
             if (fragment != null) {
                 // re-bind preference to fragment
-                fragment.setPreference(this);
+                fragment.setOnColorSelectedListener(this);
             }
         }
     }
@@ -133,121 +127,8 @@ public class ColorPreference extends Preference {
         return mValue;
     }
 
-    public int getNumColumns() {
-        return mNumColumns;
+    @Override
+    public void onColorSelected(int newColor) {
+        setValue(newColor);
     }
-
-    public int[] getColorChoices() {
-        return mColorChoices;
-    }
-
-    public int getColorShape() {
-        return mColorShape;
-    }
-
-    public static class ColorDialogFragment extends DialogFragment {
-        private ColorPreference mPreference;
-        private GridLayout mColorGrid;
-
-        public ColorDialogFragment() {
-        }
-
-        public static ColorDialogFragment newInstance() {
-            return new ColorDialogFragment();
-        }
-
-        public void setPreference(ColorPreference preference) {
-            mPreference = preference;
-            repopulateItems();
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            repopulateItems();
-        }
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            View rootView = layoutInflater.inflate(R.layout.dialog_colors, null);
-
-            mColorGrid = (GridLayout) rootView.findViewById(R.id.color_grid);
-            mColorGrid.setColumnCount(mPreference.mNumColumns);
-            repopulateItems();
-
-            return new AlertDialog.Builder(getActivity())
-                    .setView(rootView)
-                    .create();
-        }
-
-        private void repopulateItems() {
-            if (mPreference == null || mColorGrid == null) {
-                return;
-            }
-
-            Context context = mColorGrid.getContext();
-            mColorGrid.removeAllViews();
-            for (final int color : mPreference.mColorChoices) {
-                View itemView = LayoutInflater.from(context)
-                        .inflate(R.layout.grid_item_color, mColorGrid, false);
-
-                ColorUtils.setColorViewValue(itemView.findViewById(R.id.color_view), color,
-                        color == mPreference.getValue(), mPreference.mColorShape);
-                itemView.setClickable(true);
-                itemView.setFocusable(true);
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mPreference.setValue(color);
-                        dismiss();
-                    }
-                });
-
-                mColorGrid.addView(itemView);
-            }
-
-            sizeDialog();
-        }
-
-        @Override
-        public void onStart() {
-            super.onStart();
-            sizeDialog();
-        }
-
-        private void sizeDialog() {
-            if (mPreference == null || mColorGrid == null) {
-                return;
-            }
-
-            Dialog dialog = getDialog();
-            if (dialog == null) {
-                return;
-            }
-
-            final Resources res = mColorGrid.getContext().getResources();
-            DisplayMetrics dm = res.getDisplayMetrics();
-
-            // Can't use Integer.MAX_VALUE here (weird issue observed otherwise on 4.2)
-            mColorGrid.measure(
-                    View.MeasureSpec.makeMeasureSpec(dm.widthPixels, View.MeasureSpec.AT_MOST),
-                    View.MeasureSpec.makeMeasureSpec(dm.heightPixels, View.MeasureSpec.AT_MOST));
-            int width = mColorGrid.getMeasuredWidth();
-            int height = mColorGrid.getMeasuredHeight();
-
-            int extraPadding = res.getDimensionPixelSize(R.dimen.color_grid_extra_padding);
-
-            width += extraPadding;
-            height += extraPadding;
-
-            dialog.getWindow().setLayout(width, height);
-        }
-    }
-
-
-
-
-
-
 }

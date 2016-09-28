@@ -19,7 +19,9 @@ import com.kizitonwose.colorpreference.ColorPreference;
 import com.larswerkman.lobsterpicker.LobsterPicker;
 import com.larswerkman.lobsterpicker.sliders.LobsterShadeSlider;
 
-
+/**
+ * Created by Kizito Nwose on 9/28/2016.
+ */
 public class PreferenceActivity extends AppCompatActivity {
 
     @Override
@@ -31,7 +33,7 @@ public class PreferenceActivity extends AppCompatActivity {
 
     }
 
-    public static class MyPreferenceFragment extends PreferenceFragment {
+    public static class MyPreferenceFragment extends PreferenceFragment{
 
         private final String CUSTOM_PICKER_PREF_KEY = "color_pref_lobster";
 
@@ -48,6 +50,7 @@ public class PreferenceActivity extends AppCompatActivity {
                     return true;
                 }
             });
+
 
         }
 
@@ -87,10 +90,11 @@ public class PreferenceActivity extends AppCompatActivity {
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.github) {
-            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/kizitonwose/colorpreference"));
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.github_url)));
             startActivity(i);
             return true;
         }

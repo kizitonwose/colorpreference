@@ -12,6 +12,9 @@
         <item name="colorPrimary">@color/colorPrimaryAlternate</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkAlternate</item>
         <item name="colorAccent">@color/colorAccentAlternate</item>
+
+
+
     </style>
 
 

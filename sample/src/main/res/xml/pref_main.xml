@@ -5,7 +5,7 @@
 
         <com.kizitonwose.colorpreference.ColorPreference
             android:defaultValue="@color/color_1"
-            android:key="color_pref_round"
+            android:key="color_pref_circle"
             android:summary="An example of using the circle color view"
             android:title="Round color sample"
             app:colorChoices="@array/color_choices"

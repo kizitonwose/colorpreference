@@ -9,7 +9,6 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +17,11 @@ import android.view.View;
 import com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat;
 import com.larswerkman.lobsterpicker.LobsterPicker;
 import com.larswerkman.lobsterpicker.sliders.LobsterShadeSlider;
+import com.takisoft.fix.support.v7.preference.PreferenceFragmentCompat;
 
+/**
+ * Created by Kizito Nwose on 9/28/2016.
+ */
 public class PreferenceCompatActivity extends AppCompatActivity {
 
     @Override
@@ -34,7 +37,7 @@ public class PreferenceCompatActivity extends AppCompatActivity {
         private final String CUSTOM_PICKER_PREF_KEY = "color_pref_lobster_compat";
 
         @Override
-        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        public void onCreatePreferencesFix(Bundle savedInstanceState, String rootKey) {
             addPreferencesFromResource(R.xml.pref_compat);
 
             findPreference(CUSTOM_PICKER_PREF_KEY).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -44,6 +47,11 @@ public class PreferenceCompatActivity extends AppCompatActivity {
                     return true;
                 }
             });
+        }
+
+        @Override
+        public boolean onPreferenceTreeClick(Preference preference) {
+            return super.onPreferenceTreeClick(preference);
         }
 
         private void showColorDialog(final Preference preference) {
@@ -84,7 +92,7 @@ public class PreferenceCompatActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.github) {
-            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/kizitonwose/colorpreference"));
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.github_url)));
             startActivity(i);
             return true;
         }
