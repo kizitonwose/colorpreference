@@ -17,13 +17,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.0'
+
+    //compile 'com.github.kizitonwose.colorpreference:colorpreference:1.0.1'
     compile project(':colorpreference')
+
+    //compile 'com.github.kizitonwose.colorpreferencecompat:colorpreferencecompat:1.0.1'
+    compile project(':colorpreferencecompat')
+
+    //This is the custom color picker library, you can use color picker of your choice.
     compile 'com.larswerkman:lobsterpicker:1.0.1'
+
+
+    //You don't need this to use the color preference library. This is just a library that
+    //provides a nice theme for the ugly default support-preference theme.
+    compile 'com.takisoft.fix:preference-v7:24.2.0.0'
+    //compile 'com.android.support:preference-v7:24.2.0'
 
 }

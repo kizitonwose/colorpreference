@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ColorPreferenceCompat">
+        <attr name="colorChoices" />
+        <attr name="numColumns" />
+        <attr name="colorShape"/>
+        <attr name="viewSize"/>
+        <attr name="showDialog"/>
+
+    </declare-styleable>
+
+
+</resources>

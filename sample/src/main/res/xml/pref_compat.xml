@@ -1,53 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <PreferenceCategory android:title="COLORS">
+<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <com.kizitonwose.colorpreference.ColorPreference
+    <android.support.v7.preference.PreferenceCategory android:title="COLORS">
+
+        <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
             android:defaultValue="@color/color_1"
-            android:key="color_pref_round"
+            android:key="color_pref_round_compat"
             android:summary="An example of using the circle color view"
             android:title="Round color sample"
             app:colorChoices="@array/color_choices"
             app:colorShape="circle" />
 
-        <com.kizitonwose.colorpreference.ColorPreference
+        <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
             android:defaultValue="@android:color/white"
-            android:key="color_pref_square"
+            android:key="color_pref_square_compat"
             android:summary="An example of using the square color view"
             android:title="Square color sample"
             app:colorShape="square" />
 
-        <com.kizitonwose.colorpreference.ColorPreference
+        <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
             android:defaultValue="@color/colorAccent"
-            android:key="color_pref_lobster"
+            android:key="color_pref_lobster_compat"
             android:summary="An example of using a different picker"
             android:title="Custom picker sample"
             app:colorShape="circle"
             app:showDialog="false" />
 
-        <com.kizitonwose.colorpreference.ColorPreference
+        <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
             android:defaultValue="@android:color/white"
-            android:key="color_pref_circle_large"
+            android:key="color_pref_circle_large_compat"
             android:summary="An example of using the large circle color view"
             android:title="Large circle sample"
             app:colorShape="circle"
             app:viewSize="large" />
-        <com.kizitonwose.colorpreference.ColorPreference
+        <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
             android:defaultValue="@color/color_2"
-            android:key="color_pref_square_large"
+            android:key="color_pref_square_large_compat"
             android:summary="An example of using the large square color view"
             android:title="Large square sample"
             app:colorChoices="@array/color_choices"
             app:colorShape="square"
             app:viewSize="large" />
 
-        <Preference
-            android:summary="See the examples of using support-preference-v7"
-            android:title="ColorPreferenceCompat sample">
-            <intent android:action="com.kizitonwose.colorpreferencesample.opencompatsettings" />
-        </Preference>
+    </android.support.v7.preference.PreferenceCategory>
 
-    </PreferenceCategory>
-
-</PreferenceScreen>
+</android.support.v7.preference.PreferenceScreen>

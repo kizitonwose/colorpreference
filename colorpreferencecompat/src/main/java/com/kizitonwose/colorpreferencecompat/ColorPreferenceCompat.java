@@ -1,23 +1,37 @@
-package com.kizitonwose.colorpreference;
+package com.kizitonwose.colorpreferencecompat;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
-import android.preference.Preference;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.GridLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.kizitonwose.colorpreference.ColorUtils;
 
-public class ColorPreference extends Preference {
+/**
+ * Created by Kizito Nwose on 9/26/2016.
+ */
+public class ColorPreferenceCompat extends Preference {
     private int[] mColorChoices = {};
     private int mValue = 0;
     private int mItemLayoutId = R.layout.pref_color_layout;
@@ -28,32 +42,31 @@ public class ColorPreference extends Preference {
     private boolean showDialog = true;
     private int previewSize = 1;
 
-    public ColorPreference(Context context) {
-        super(context);
-        initAttrs(null, 0);
+    public ColorPreferenceCompat(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initAttrs(attrs, defStyleAttr);
     }
 
-    public ColorPreference(Context context, AttributeSet attrs) {
+    public ColorPreferenceCompat(Context context, AttributeSet attrs) {
         super(context, attrs);
         initAttrs(attrs, 0);
     }
 
-    public ColorPreference(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        initAttrs(attrs, defStyle);
+    public ColorPreferenceCompat(Context context) {
+        super(context);
+        initAttrs(null, 0);
     }
 
     private void initAttrs(AttributeSet attrs, int defStyle) {
         TypedArray a = getContext().getTheme().obtainStyledAttributes(
-                attrs, R.styleable.ColorPreference, defStyle, defStyle);
+                attrs, R.styleable.ColorPreferenceCompat, defStyle, defStyle);
 
         try {
-            //mItemLayoutId = a.getResourceId(R.styleable.ColorPreference_itemLayout, mItemLayoutId);
-            mNumColumns = a.getInteger(R.styleable.ColorPreference_numColumns, mNumColumns);
-            mColorShape = a.getInteger(R.styleable.ColorPreference_colorShape, 1);
-            previewSize = a.getInteger(R.styleable.ColorPreference_viewSize, 1);
-            showDialog = a.getBoolean(R.styleable.ColorPreference_showDialog, true);
-            int choicesResId = a.getResourceId(R.styleable.ColorPreference_colorChoices,
+            mNumColumns = a.getInteger(R.styleable.ColorPreferenceCompat_numColumns, mNumColumns);
+            mColorShape = a.getInteger(R.styleable.ColorPreferenceCompat_colorShape, 1);
+            previewSize = a.getInteger(R.styleable.ColorPreferenceCompat_viewSize, 1);
+            showDialog = a.getBoolean(R.styleable.ColorPreferenceCompat_showDialog, true);
+            int choicesResId = a.getResourceId(R.styleable.ColorPreferenceCompat_colorChoices,
                     R.array.default_color_choice_values);
             if (choicesResId > 0) {
                 String[] choices = a.getResources().getStringArray(choicesResId);
@@ -67,14 +80,14 @@ public class ColorPreference extends Preference {
         } finally {
             a.recycle();
         }
-
         setWidgetLayoutResource(previewSize == 1 ? mItemLayoutId : mItemLayoutLargeId);
+
     }
 
     @Override
-    protected void onBindView(View view) {
-        super.onBindView(view);
-        mPreviewView = view.findViewById(R.id.color_view);
+    public void onBindViewHolder(PreferenceViewHolder holder) {
+        super.onBindViewHolder(holder);
+        mPreviewView = holder.findViewById(R.id.color_view);
         ColorUtils.setColorViewValue(mPreviewView, mValue, false, mColorShape);
     }
 
@@ -86,6 +99,7 @@ public class ColorPreference extends Preference {
         }
     }
 
+
     @Override
     protected void onClick() {
         super.onClick();
@@ -94,26 +108,15 @@ public class ColorPreference extends Preference {
             ColorDialogFragment fragment = ColorDialogFragment.newInstance();
             fragment.setPreference(this);
 
-            Activity activity = (Activity) getContext();
+            ContextWrapper context = (ContextWrapper) getContext();
+            Activity activity = (Activity) context.getBaseContext();
+
             activity.getFragmentManager().beginTransaction()
                     .add(fragment, getFragmentTag())
                     .commit();
         }
     }
 
-    @Override
-    protected void onAttachedToActivity() {
-        super.onAttachedToActivity();
-        if (showDialog) {
-            Activity activity = (Activity) getContext();
-            ColorDialogFragment fragment = (ColorDialogFragment) activity
-                    .getFragmentManager().findFragmentByTag(getFragmentTag());
-            if (fragment != null) {
-                // re-bind preference to fragment
-                fragment.setPreference(this);
-            }
-        }
-    }
 
     @Override
     protected Object onGetDefaultValue(TypedArray a, int index) {
@@ -133,20 +136,8 @@ public class ColorPreference extends Preference {
         return mValue;
     }
 
-    public int getNumColumns() {
-        return mNumColumns;
-    }
-
-    public int[] getColorChoices() {
-        return mColorChoices;
-    }
-
-    public int getColorShape() {
-        return mColorShape;
-    }
-
     public static class ColorDialogFragment extends DialogFragment {
-        private ColorPreference mPreference;
+        private ColorPreferenceCompat mPreference;
         private GridLayout mColorGrid;
 
         public ColorDialogFragment() {
@@ -156,7 +147,7 @@ public class ColorPreference extends Preference {
             return new ColorDialogFragment();
         }
 
-        public void setPreference(ColorPreference preference) {
+        public void setPreference(ColorPreferenceCompat preference) {
             mPreference = preference;
             repopulateItems();
         }
@@ -244,9 +235,6 @@ public class ColorPreference extends Preference {
             dialog.getWindow().setLayout(width, height);
         }
     }
-
-
-
 
 
 

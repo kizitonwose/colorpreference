@@ -1,41 +1,41 @@
 package com.kizitonwose.colorpreferencesample;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
-import com.kizitonwose.colorpreference.ColorPreference;
+import com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat;
 import com.larswerkman.lobsterpicker.LobsterPicker;
 import com.larswerkman.lobsterpicker.sliders.LobsterShadeSlider;
 
-
-public class MainActivity extends AppCompatActivity {
+public class PreferenceCompatActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        getFragmentManager().beginTransaction().replace(R.id.content_frame, new MyPreferenceFragment()).commit();
+        setContentView(R.layout.activity_preference_compat);
+        setTitle("ColorPreferenceCompat sample");
 
     }
 
-    public static class MyPreferenceFragment extends PreferenceFragment {
+    public static class MyPreferenceFragmentCompat extends PreferenceFragmentCompat {
 
-        private final String CUSTOM_PICKER_PREF_KEY = "color_pref_lobster";
+        private final String CUSTOM_PICKER_PREF_KEY = "color_pref_lobster_compat";
 
         @Override
-        public void onCreate(final Bundle savedInstanceState) {
-
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_main);
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+            addPreferencesFromResource(R.xml.pref_compat);
 
             findPreference(CUSTOM_PICKER_PREF_KEY).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             });
-
         }
 
         private void showColorDialog(final Preference preference) {
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("SAVE", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            ((ColorPreference) preference).setValue(lobsterPicker.getColor());
+                            ((ColorPreferenceCompat) preference).setValue(lobsterPicker.getColor());
                         }
                     })
                     .setNegativeButton("CLOSE", null)
@@ -76,5 +75,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.github) {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/kizitonwose/colorpreference"));
+            startActivity(i);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

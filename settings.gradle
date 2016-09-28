@@ -1,1 +1,1 @@
-include ':sample', ':colorpreference'
+include ':sample', ':colorpreference', ':colorpreferencecompat'
