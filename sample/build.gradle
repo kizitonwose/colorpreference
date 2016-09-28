@@ -36,9 +36,8 @@ dependencies {
     compile 'com.larswerkman:lobsterpicker:1.0.1'
 
 
-    //You don't need this to use the color preference library. This is just a library that
-    //provides a nice theme for the ugly default support-preference theme.
-    compile 'com.takisoft.fix:preference-v7:24.2.0.0'
-    //compile 'com.android.support:preference-v7:24.2.0'
+    //You don't need this to use the color preference library. This is only necessary for the
+    //Preference theme in the ColorPreferenceCompat sample activity
+    compile 'com.android.support:preference-v14:24.2.0'
 
 }

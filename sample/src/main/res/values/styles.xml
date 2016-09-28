@@ -8,12 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppThemeCompat" parent="PreferenceFixTheme.Light.DarkActionBar">
+    <style name="AppThemeCompat" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <item name="colorPrimary">@color/colorPrimaryAlternate</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkAlternate</item>
         <item name="colorAccent">@color/colorAccentAlternate</item>
-
-
 
     </style>
 
