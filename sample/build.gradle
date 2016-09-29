@@ -8,8 +8,8 @@ android {
         applicationId "com.kizitonwose.colorpreferencesample"
         minSdkVersion 14
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
     }
     buildTypes {
         release {
@@ -38,6 +38,7 @@ dependencies {
 
     //You don't need this to use the color preference library. This is only necessary for the
     //Preference theme in the ColorPreferenceCompat sample activity
+    //The support-
     compile 'com.android.support:preference-v14:24.2.0'
 
 }
