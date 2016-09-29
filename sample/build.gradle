@@ -29,7 +29,7 @@ dependencies {
     //compile 'com.github.kizitonwose.colorpreference:colorpreference:1.0.1'
     compile project(':colorpreference')
 
-    //compile 'com.github.kizitonwose.colorpreferencecompat:colorpreferencecompat:1.0.1'
+    //compile 'com.github.kizitonwose.colorpreference:colorpreferencecompat:1.0.1'
     compile project(':colorpreferencecompat')
 
     //This is the custom color picker library, you can use color picker of your choice.
