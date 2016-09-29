@@ -7,7 +7,7 @@
     <android.support.v7.preference.PreferenceCategory android:title="COLORS">
 
         <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
-            android:defaultValue="@color/color_1"
+            android:defaultValue="@color/colorPrimaryAlternate"
             android:key="color_pref_circle_compat"
             android:summary="An example of using the circle color view"
             android:title="Round color sample"
@@ -22,7 +22,7 @@
             app:colorShape="square" />
 
         <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
-            android:defaultValue="@color/colorAccent"
+            android:defaultValue="@color/colorAccentAlternate"
             android:key="color_pref_lobster_compat"
             android:summary="An example of using a different picker"
             android:title="Custom picker sample"
@@ -37,7 +37,7 @@
             app:colorShape="circle"
             app:viewSize="large" />
         <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
-            android:defaultValue="@color/color_2"
+            android:defaultValue="@color/color_1"
             android:key="color_pref_square_large_compat"
             android:summary="An example of using the large square color view"
             android:title="Large square sample"

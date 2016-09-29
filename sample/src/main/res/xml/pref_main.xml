@@ -4,7 +4,7 @@
     <PreferenceCategory android:title="COLORS">
 
         <com.kizitonwose.colorpreference.ColorPreference
-            android:defaultValue="@color/color_1"
+            android:defaultValue="@color/colorPrimary"
             android:key="color_pref_circle"
             android:summary="An example of using the circle color view"
             android:title="Round color sample"
