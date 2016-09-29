@@ -11,7 +11,7 @@ An Android library for creating a nice color picker in the preference screen. Yo
 
 <img src="/art/screenshot1.png" alt="ExampleMain" width="240"> <img src="/art/screenshot2.png" alt="ExampleCircle" width="240"> <img src="/art/screenshot3.png" alt="ExampleSquare" width="240">
 
-Get the sample apk [here](https://github.com/kizitonwose/colorpreference/releases/download/1.0.0/sample-1.0.0.apk) 
+Get the sample apk [here](https://github.com/kizitonwose/colorpreference/releases/download/1.0.1/sample-1.0.1.apk) 
 
 Also checkout the sample module [here](/sample/)
 
@@ -55,7 +55,7 @@ Just like every other preference object, you add it to the XML file of your Pref
 ```xml
 <com.kizitonwose.colorpreference.ColorPreference
 	android:defaultValue="@color/color_default"
-	android:key="color_pref" />
+	android:key="@string/pref_key" />
 
 <CheckBoxPreference
 	... />
@@ -71,7 +71,7 @@ Just like every other preference object, you add it to the XML file of your Pref
 ```xml
 <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
 	android:defaultValue="@color/color_default"
-	android:key="color_pref" />
+	android:key="@string/pref_key" />
 
 <android.support.v7.preference.SwitchPreferenceCompat
 	... />
@@ -86,7 +86,7 @@ Now you can use the custom attributes. All custom attributes are available for t
 ```xml
 <com.kizitonwose.colorpreference.ColorPreference
 	android:defaultValue="@color/color_default"
-	android:key="color_pref"
+	android:key="@string/pref_key"
 	android:summary="@string/pref_summary"
 	android:title="@string/pref_title"
 	app:colorShape="square"
@@ -116,9 +116,15 @@ Actually, all you have to do is include the `app:showDialog="false"` in the pref
 The custom picker in the sample uses the [Lobster Color Picker](https://github.com/LarsWerkman/Lobsterpicker) Library. You can use any color picker that is available on Android.
 
 
+## Changelog
+
+See the [changelog](/CHANGELOG.md) file.
+
+
 ## Credits
 
 Original code belongs to [Roman Nurik](https://github.com/romannurik) of [Google](https://github.com/google), I did some additions like the view size, color shape, support-preference-v7/v14 usage and the ability to use a custom color picker(more to come). I have also made it available as a Gradle dependency for easy usage.
+
 
 ## License
 
