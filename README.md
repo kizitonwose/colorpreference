@@ -1,6 +1,6 @@
 # Color Preference
 
-A custom preference item for easy implementation of a color picker in the preference screen. You can use the inbuilt picker or any other color picker of your choice.
+An Android library for creating a nice color picker in the preference screen. You can use the inbuilt picker or any other color picker of your choice. The library can be used with the standard preference classes or the support-preference-v7/v14 classes.
 
 [![JitPack](https://jitpack.io/v/kizitonwose/colorpreference.svg)](https://jitpack.io/#kizitonwose/colorpreference) 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Color%20Preference-brightgreen.svg)](https://android-arsenal.com/details/1/4401) 
@@ -37,7 +37,7 @@ dependencies {
 	compile 'com.github.kizitonwose.colorpreference:colorpreference:1.0.1'
 }
 ```
-If you are using the support-preference-v7 library, you should use this in your app `build.gradle` instead:
+If you are using the support-preference-v7/v14 library, you should use this in your app `build.gradle` instead:
 
 ```groovy
 dependencies {
@@ -54,27 +54,27 @@ Just like every other preference object, you add it to the XML file of your Pref
 
 ```xml
 <com.kizitonwose.colorpreference.ColorPreference
-            android:defaultValue="@color/color_default"
-            android:key="color_pref" />
+	android:defaultValue="@color/color_default"
+	android:key="color_pref" />
 
 <CheckBoxPreference
-            ... />
+	... />
 
 <SwitchPreference
-            ... />
+	... />
 
 ```
 
-##### Support Preference-v7 usage
+##### Support Preference-v7/v14 usage
 
 
 ```xml
 <com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
-            android:defaultValue="@color/color_default"
-            android:key="color_pref" />
+	android:defaultValue="@color/color_default"
+	android:key="color_pref" />
 
 <android.support.v7.preference.SwitchPreferenceCompat
-            ... />
+	... />
 ```
 
 The default implementation is the circle color view. For custom settings, add the app namespace to your XML file:
@@ -85,21 +85,21 @@ Now you can use the custom attributes. All custom attributes are available for t
 
 ```xml
 <com.kizitonwose.colorpreference.ColorPreference
-           android:defaultValue="@color/color_default"
-            android:key="color_pref"
-            android:summary="@string/pref_summary"
-            android:title="@string/pref_title"
-            app:colorShape="square"
-            app:colorChoices="@array/color_choices"
-            app:viewSize="large"
-            app:numColumns="5
-            app:showDialog="false" />
+	android:defaultValue="@color/color_default"
+	android:key="color_pref"
+	android:summary="@string/pref_summary"
+	android:title="@string/pref_title"
+	app:colorShape="square"
+	app:colorChoices="@array/color_choices"
+	app:viewSize="large"
+	app:numColumns="5
+	app:showDialog="false" />
 ```
 
 
 ### Attributes
 
-|attribute name|description|default value|
+|Attribute name|Description|Default value|
 |:-:|:-:|:-:|
 |colorShape|The shape of the color view(`circle` or `square`)| `circle`|
 |colorChoices|An array of colors to show on the dialog| An internal array |
@@ -118,7 +118,7 @@ The custom picker in the sample uses the [Lobster Color Picker](https://github.c
 
 ## Credits
 
-Original code belongs to [Roman Nurik](https://github.com/romannurik) of [Google](https://github.com/google), I did some additions like the view size, color shape, support-preference-v7 usage and the ability to use a custom color picker(more to come). I have also made it available as a Gradle dependency for easy usage.
+Original code belongs to [Roman Nurik](https://github.com/romannurik) of [Google](https://github.com/google), I did some additions like the view size, color shape, support-preference-v7/v14 usage and the ability to use a custom color picker(more to come). I have also made it available as a Gradle dependency for easy usage.
 
 ## License
 
