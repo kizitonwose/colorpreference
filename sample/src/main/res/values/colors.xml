@@ -10,6 +10,7 @@
 
     <color name="color_1">#2196f3</color>
     <color name="color_2">#ffc107</color>
+    <color name="color_3">#e91e63</color>
 
     <string-array name="color_choices">
         <item>#f44336</item>

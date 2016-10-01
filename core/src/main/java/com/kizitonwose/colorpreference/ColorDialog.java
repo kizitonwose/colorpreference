@@ -5,8 +5,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.ArrayRes;
+import android.support.annotation.ColorInt;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,8 +39,7 @@ public class ColorDialog extends DialogFragment {
     public ColorDialog() {
     }
 
-
-    public static ColorDialog newInstance(int numColumns, int colorShape, int[] colorChoices,  int selectedColorValue) {
+    public static ColorDialog newInstance(int numColumns, int colorShape, int[] colorChoices, int selectedColorValue) {
         Bundle args = new Bundle();
         args.putInt(NUM_COLUMNS_KEY, numColumns);
         args.putInt(COLOR_SHAPE_KEY, colorShape);
@@ -103,7 +106,7 @@ public class ColorDialog extends DialogFragment {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (colorSelectedListener!=null){
+                    if (colorSelectedListener != null) {
                         colorSelectedListener.onColorSelected(color);
                     }
                     dismiss();
@@ -152,5 +155,73 @@ public class ColorDialog extends DialogFragment {
 
     public interface OnColorSelectedListener extends Serializable {
         void onColorSelected(int newColor);
+    }
+
+    public static class Builder {
+        private OnColorSelectedListener colorSelectedListener;
+        private int numColumns = 5;
+        private int[] colorChoices;
+        private ColorShape colorShape = ColorShape.CIRCLE;
+        private Context context;
+        private int selectedColor;
+
+        public Builder(Context context) {
+            this.context = context;
+            //default colors
+            setColorChoices(R.array.default_color_choice_values);
+        }
+
+        public Builder setNumColumns(int numColumns) {
+            this.numColumns = numColumns;
+            return this;
+        }
+
+        public Builder setColorChoices(@ArrayRes int colorChoicesRes) {
+            String[] choices = context.getResources().getStringArray(colorChoicesRes);
+
+            int[] colors = new int[choices.length];
+            for (int i = 0; i < choices.length; i++) {
+                colors[i] = Color.parseColor(choices[i]);
+            }
+
+            this.colorChoices = colors;
+            return this;
+        }
+
+        public Builder setColorShape(ColorShape colorShape) {
+            this.colorShape = colorShape;
+            return this;
+        }
+
+        public Builder setColorSelectedListener(OnColorSelectedListener colorSelectedListener) {
+            this.colorSelectedListener = colorSelectedListener;
+            return this;
+        }
+
+        public Builder setSelectedColor(@ColorInt int selectedColor) {
+            this.selectedColor = selectedColor;
+            return this;
+        }
+
+        protected ColorDialog build() {
+            ColorDialog dialog = ColorDialog.newInstance(numColumns, colorShape.getValue(), colorChoices, selectedColor);
+            dialog.setOnColorSelectedListener(colorSelectedListener);
+            return dialog;
+        }
+
+        public ColorDialog show() {
+            ColorDialog dialog = build();
+            dialog.show(resolveContext(context).getFragmentManager(), String.valueOf(System.currentTimeMillis()));
+            return dialog;
+        }
+
+        protected Activity resolveContext(Context context) {
+            if (context instanceof Activity) {
+                return (Activity) context;
+            } else if (context instanceof ContextWrapper) {
+                return resolveContext(((ContextWrapper) context).getBaseContext());
+            }
+            return null;
+        }
     }
 }

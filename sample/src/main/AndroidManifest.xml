@@ -15,13 +15,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PreferenceCompatActivity"
+        <activity
+            android:name=".PreferenceCompatActivity"
             android:theme="@style/AppThemeCompat">
             <intent-filter>
                 <action android:name="com.kizitonwose.colorpreferencesample.opencompatsettings" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".ColorPickerActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
