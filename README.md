@@ -127,7 +127,7 @@ The custom picker in the sample uses the [Lobster Color Picker](https://github.c
 If you want to use the inbuilt color picker in any activity as a simple color picker, you can use the `ColorDialog.Builder` class. A working sample is also included in the [sample](/sample/) module.
 
 ```java
-// The context shuould be Activity which implements ColorDialog.OnColorSelectedListener
+// The context shuould be an Activity which implements ColorDialog.OnColorSelectedListener
 new ColorDialog.Builder(this)
 		.setColorShape(ColorShape.CIRCLE) //CIRCLE or SQUARE
 		.setColorChoices(R.array.color_choices) //an array of colors
@@ -139,7 +139,7 @@ new ColorDialog.Builder(this)
 
 Activity usage example
 ```java
-public class ExampleActivity implements ColorDialog.OnColorSelectedListener {
+public class ExampleActivity extends Activity implements ColorDialog.OnColorSelectedListener {
 
 	// set these tags when building the color picker dialog
 	// if you have only one picker in an Activity, you don't need a tag
