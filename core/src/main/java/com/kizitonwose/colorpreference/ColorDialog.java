@@ -17,8 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.GridLayout;
 
-import java.io.Serializable;
-
 /**
  * Created by Kizito Nwose on 9/28/2016.
  */
@@ -161,7 +159,7 @@ public class ColorDialog extends DialogFragment {
         dialog.getWindow().setLayout(width, height);
     }
 
-    public interface OnColorSelectedListener extends Serializable {
+    public interface OnColorSelectedListener {
         void onColorSelected(int newColor, String tag);
     }
 
