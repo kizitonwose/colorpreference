@@ -137,7 +137,7 @@ new ColorDialog.Builder(this)
 
 ```
 
-Your activity should implement `ColorDialog.OnColorSelectedListener`
+Activity usage example
 ```
 public class ExampleActivity implements ColorDialog.OnColorSelectedListener {
 
