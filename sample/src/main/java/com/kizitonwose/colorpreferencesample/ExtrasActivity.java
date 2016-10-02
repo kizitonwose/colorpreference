@@ -57,7 +57,7 @@ public class ExtrasActivity extends BaseActivity implements ColorDialog.OnColorS
             }
         });
 
-        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showColorDialog(view);
