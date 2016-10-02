@@ -17,7 +17,7 @@ import android.widget.TextView;
  */
 public class ColorUtils {
 
-    public static void setColorViewValue(View view, int color, boolean selected, int shape) {
+    public static void setColorViewValue(View view, int color, boolean selected, ColorShape shape) {
         if (view instanceof ImageView) {
             ImageView imageView = (ImageView) view;
             Resources res = imageView.getContext().getResources();
@@ -29,7 +29,7 @@ public class ColorUtils {
                 colorChoiceDrawable = (GradientDrawable) currentDrawable;
             } else {
                 colorChoiceDrawable = new GradientDrawable();
-                colorChoiceDrawable.setShape(shape == 2 ? GradientDrawable.RECTANGLE : GradientDrawable.OVAL);
+                colorChoiceDrawable.setShape(shape == ColorShape.SQUARE ? GradientDrawable.RECTANGLE : GradientDrawable.OVAL);
             }
 
             // Set stroke to dark version of color
@@ -61,6 +61,7 @@ public class ColorUtils {
     }
 
     private static final int BRIGHTNESS_THRESHOLD = 150;
+
     private static boolean isColorDark(int color) {
         return ((30 * Color.red(color) +
                 59 * Color.green(color) +

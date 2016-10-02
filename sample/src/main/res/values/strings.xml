@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Color Preference sample</string>
     <string name="github_url">https://github.com/kizitonwose/colorpreference</string>
+    <string name="colorText">This activity shows how to use the inbuilt color picker anywhere in your app.
+        Click the button below to change the toolbar color.
+        Click the Floating Action Button to change its color.</string>
 </resources>

@@ -11,7 +11,9 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.kizitonwose.colorpreference.ColorDialog;
+import com.kizitonwose.colorpreference.ColorShape;
 import com.kizitonwose.colorpreference.ColorUtils;
+import com.kizitonwose.colorpreference.PreviewSize;
 
 /**
  * Created by Kizito Nwose on 9/26/2016.
@@ -23,9 +25,8 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
     private int mItemLayoutLargeId = R.layout.pref_color_layout_large;
     private int mNumColumns = 5;
     private View mPreviewView;
-    private int mColorShape = 1;
+    private ColorShape colorShape = ColorShape.CIRCLE;
     private boolean showDialog = true;
-    private int previewSize = 1;
 
     public ColorPreferenceCompat(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -46,10 +47,11 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
         TypedArray a = getContext().getTheme().obtainStyledAttributes(
                 attrs, R.styleable.ColorPreferenceCompat, defStyle, defStyle);
 
+        PreviewSize previewSize = PreviewSize.NORMAL;
         try {
             mNumColumns = a.getInteger(R.styleable.ColorPreferenceCompat_numColumns, mNumColumns);
-            mColorShape = a.getInteger(R.styleable.ColorPreferenceCompat_colorShape, 1);
-            previewSize = a.getInteger(R.styleable.ColorPreferenceCompat_viewSize, 1);
+            colorShape = ColorShape.getShape(a.getInteger(R.styleable.ColorPreferenceCompat_colorShape, 1));
+            previewSize = PreviewSize.getSize(a.getInteger(R.styleable.ColorPreferenceCompat_viewSize, 1));
             showDialog = a.getBoolean(R.styleable.ColorPreferenceCompat_showDialog, true);
             int choicesResId = a.getResourceId(R.styleable.ColorPreferenceCompat_colorChoices,
                     R.array.default_color_choice_values);
@@ -65,7 +67,7 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
         } finally {
             a.recycle();
         }
-        setWidgetLayoutResource(previewSize == 1 ? mItemLayoutId : mItemLayoutLargeId);
+        setWidgetLayoutResource(previewSize == PreviewSize.NORMAL ? mItemLayoutId : mItemLayoutLargeId);
 
     }
 
@@ -73,7 +75,7 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
     public void onBindViewHolder(PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
         mPreviewView = holder.findViewById(R.id.color_view);
-        ColorUtils.setColorViewValue(mPreviewView, mValue, false, mColorShape);
+        ColorUtils.setColorViewValue(mPreviewView, mValue, false, colorShape);
     }
 
     public void setValue(int value) {
@@ -90,7 +92,7 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
         super.onClick();
 
         if (showDialog) {
-            ColorDialog fragment = ColorDialog.newInstance(mNumColumns, mColorShape, mColorChoices, getValue());
+            ColorDialog fragment = ColorDialog.newInstance(mNumColumns, colorShape, mColorChoices, getValue());
             fragment.setOnColorSelectedListener(this);
 
             ContextWrapper context = (ContextWrapper) getContext();
@@ -99,6 +101,7 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
             activity.getFragmentManager().beginTransaction()
                     .add(fragment, getFragmentTag())
                     .commit();
+
         }
     }
 
@@ -139,7 +142,7 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
     }
 
     @Override
-    public void onColorSelected(int newColor) {
+    public void onColorSelected(int newColor, String tag) {
         setValue(newColor);
     }
 }

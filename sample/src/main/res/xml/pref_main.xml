@@ -7,7 +7,7 @@
             android:defaultValue="@color/colorPrimary"
             android:key="color_pref_circle"
             android:summary="An example of using the circle color view"
-            android:title="Round color sample"
+            android:title="Circle color sample"
             app:colorChoices="@array/color_choices"
             app:colorShape="circle" />
 
@@ -46,6 +46,12 @@
             android:summary="See the examples of using support-preference-v7/v14"
             android:title="ColorPreferenceCompat sample">
             <intent android:action="com.kizitonwose.colorpreferencesample.opencompatsettings" />
+        </Preference>
+
+        <Preference
+            android:summary="See the examples of using the inbuilt color picker in any activity"
+            android:title="Extras sample">
+            <intent android:action="com.kizitonwose.colorpreferencesample.openextras" />
         </Preference>
 
     </PreferenceCategory>

@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,7 @@ public class ColorDialog extends DialogFragment {
     private OnColorSelectedListener colorSelectedListener;
     private int numColumns;
     private int[] colorChoices;
-    private int colorShape;
+    private ColorShape colorShape;
 
     //the color to be checked
     private int selectedColorValue;
@@ -39,10 +40,10 @@ public class ColorDialog extends DialogFragment {
     public ColorDialog() {
     }
 
-    public static ColorDialog newInstance(int numColumns, int colorShape, int[] colorChoices, int selectedColorValue) {
+    public static ColorDialog newInstance(int numColumns, ColorShape colorShape, int[] colorChoices, int selectedColorValue) {
         Bundle args = new Bundle();
         args.putInt(NUM_COLUMNS_KEY, numColumns);
-        args.putInt(COLOR_SHAPE_KEY, colorShape);
+        args.putSerializable(COLOR_SHAPE_KEY, colorShape);
         args.putIntArray(COLOR_CHOICES_KEY, colorChoices);
         args.putInt(SELECTED_COLOR_KEY, selectedColorValue);
 
@@ -57,7 +58,7 @@ public class ColorDialog extends DialogFragment {
 
         Bundle args = getArguments();
         numColumns = args.getInt(NUM_COLUMNS_KEY);
-        colorShape = args.getInt(COLOR_SHAPE_KEY);
+        colorShape = (ColorShape) args.getSerializable(COLOR_SHAPE_KEY);
         colorChoices = args.getIntArray(COLOR_CHOICES_KEY);
         selectedColorValue = args.getInt(SELECTED_COLOR_KEY);
     }
@@ -70,7 +71,13 @@ public class ColorDialog extends DialogFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        repopulateItems();
+
+        if (activity instanceof OnColorSelectedListener) {
+            setOnColorSelectedListener((OnColorSelectedListener) activity);
+        } else {
+            repopulateItems();
+        }
+
     }
 
     @Override
@@ -107,7 +114,7 @@ public class ColorDialog extends DialogFragment {
                 @Override
                 public void onClick(View view) {
                     if (colorSelectedListener != null) {
-                        colorSelectedListener.onColorSelected(color);
+                        colorSelectedListener.onColorSelected(color, getTag());
                     }
                     dismiss();
                 }
@@ -124,6 +131,7 @@ public class ColorDialog extends DialogFragment {
         super.onStart();
         sizeDialog();
     }
+
 
     private void sizeDialog() {
         if (colorSelectedListener == null || colorGrid == null) {
@@ -154,18 +162,19 @@ public class ColorDialog extends DialogFragment {
     }
 
     public interface OnColorSelectedListener extends Serializable {
-        void onColorSelected(int newColor);
+        void onColorSelected(int newColor, String tag);
     }
 
     public static class Builder {
-        private OnColorSelectedListener colorSelectedListener;
         private int numColumns = 5;
         private int[] colorChoices;
         private ColorShape colorShape = ColorShape.CIRCLE;
         private Context context;
         private int selectedColor;
+        private String tag;
 
-        public Builder(Context context) {
+
+        public <ColorActivityType extends Activity & OnColorSelectedListener> Builder(@NonNull ColorActivityType context) {
             this.context = context;
             //default colors
             setColorChoices(R.array.default_color_choice_values);
@@ -193,25 +202,25 @@ public class ColorDialog extends DialogFragment {
             return this;
         }
 
-        public Builder setColorSelectedListener(OnColorSelectedListener colorSelectedListener) {
-            this.colorSelectedListener = colorSelectedListener;
-            return this;
-        }
-
         public Builder setSelectedColor(@ColorInt int selectedColor) {
             this.selectedColor = selectedColor;
             return this;
         }
 
+        public Builder setTag(String tag) {
+            this.tag = tag;
+            return this;
+        }
+
         protected ColorDialog build() {
-            ColorDialog dialog = ColorDialog.newInstance(numColumns, colorShape.getValue(), colorChoices, selectedColor);
-            dialog.setOnColorSelectedListener(colorSelectedListener);
+            ColorDialog dialog = ColorDialog.newInstance(numColumns, colorShape, colorChoices, selectedColor);
+            dialog.setOnColorSelectedListener((OnColorSelectedListener) context);
             return dialog;
         }
 
         public ColorDialog show() {
             ColorDialog dialog = build();
-            dialog.show(resolveContext(context).getFragmentManager(), String.valueOf(System.currentTimeMillis()));
+            dialog.show(resolveContext(context).getFragmentManager(), tag == null ? String.valueOf(System.currentTimeMillis()) : tag);
             return dialog;
         }
 

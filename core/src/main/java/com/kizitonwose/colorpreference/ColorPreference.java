@@ -9,16 +9,15 @@ import android.util.AttributeSet;
 import android.view.View;
 
 
-public class ColorPreference extends Preference implements ColorDialog.OnColorSelectedListener{
+public class ColorPreference extends Preference implements ColorDialog.OnColorSelectedListener {
     private int[] mColorChoices = {};
     private int mValue = 0;
     private int mItemLayoutId = R.layout.pref_color_layout;
     private int mItemLayoutLargeId = R.layout.pref_color_layout_large;
     private int mNumColumns = 5;
     private View mPreviewView;
-    private int mColorShape = 1;
+    private ColorShape colorShape = ColorShape.CIRCLE;
     private boolean showDialog = true;
-    private int previewSize = 1;
 
     public ColorPreference(Context context) {
         super(context);
@@ -39,11 +38,12 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
         TypedArray a = getContext().getTheme().obtainStyledAttributes(
                 attrs, R.styleable.ColorPreference, defStyle, defStyle);
 
+        PreviewSize previewSize = PreviewSize.NORMAL;
         try {
             //mItemLayoutId = a.getResourceId(R.styleable.ColorPreference_itemLayout, mItemLayoutId);
             mNumColumns = a.getInteger(R.styleable.ColorPreference_numColumns, mNumColumns);
-            mColorShape = a.getInteger(R.styleable.ColorPreference_colorShape, 1);
-            previewSize = a.getInteger(R.styleable.ColorPreference_viewSize, 1);
+            colorShape = ColorShape.getShape(a.getInteger(R.styleable.ColorPreference_colorShape, 1));
+            previewSize = PreviewSize.getSize(a.getInteger(R.styleable.ColorPreference_viewSize, 1));
             showDialog = a.getBoolean(R.styleable.ColorPreference_showDialog, true);
             int choicesResId = a.getResourceId(R.styleable.ColorPreference_colorChoices,
                     R.array.default_color_choice_values);
@@ -60,14 +60,14 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
             a.recycle();
         }
 
-        setWidgetLayoutResource(previewSize == 1 ? mItemLayoutId : mItemLayoutLargeId);
+        setWidgetLayoutResource(previewSize == PreviewSize.NORMAL ? mItemLayoutId : mItemLayoutLargeId);
     }
 
     @Override
     protected void onBindView(View view) {
         super.onBindView(view);
         mPreviewView = view.findViewById(R.id.color_view);
-        ColorUtils.setColorViewValue(mPreviewView, mValue, false, mColorShape);
+        ColorUtils.setColorViewValue(mPreviewView, mValue, false, colorShape);
     }
 
     public void setValue(int value) {
@@ -83,7 +83,7 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
         super.onClick();
 
         if (showDialog) {
-            ColorDialog fragment = ColorDialog.newInstance(mNumColumns, mColorShape, mColorChoices, getValue());
+            ColorDialog fragment = ColorDialog.newInstance(mNumColumns, colorShape, mColorChoices, getValue());
             fragment.setOnColorSelectedListener(this);
 
             Activity activity = (Activity) getContext();
@@ -128,7 +128,7 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
     }
 
     @Override
-    public void onColorSelected(int newColor) {
+    public void onColorSelected(int newColor, String tag) {
         setValue(newColor);
     }
 }

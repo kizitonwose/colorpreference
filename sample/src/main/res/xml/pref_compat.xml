@@ -10,7 +10,7 @@
             android:defaultValue="@color/colorPrimaryAlternate"
             android:key="color_pref_circle_compat"
             android:summary="An example of using the circle color view"
-            android:title="Round color sample"
+            android:title="Circle color sample"
             app:colorChoices="@array/color_choices"
             app:colorShape="circle" />
 
