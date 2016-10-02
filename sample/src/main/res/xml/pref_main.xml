@@ -43,7 +43,7 @@
             app:viewSize="large" />
 
         <Preference
-            android:summary="See the examples of using support-preference-v7/v14"
+            android:summary="See the examples of using support-preference-v7/v14 library"
             android:title="ColorPreferenceCompat sample">
             <intent android:action="com.kizitonwose.colorpreferencesample.opencompatsettings" />
         </Preference>
