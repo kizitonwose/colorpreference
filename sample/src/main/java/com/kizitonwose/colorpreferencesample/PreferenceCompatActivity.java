@@ -1,18 +1,13 @@
 package com.kizitonwose.colorpreferencesample;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat;
@@ -22,7 +17,7 @@ import com.larswerkman.lobsterpicker.sliders.LobsterShadeSlider;
 /**
  * Created by Kizito Nwose on 9/28/2016.
  */
-public class PreferenceCompatActivity extends AppCompatActivity {
+public class PreferenceCompatActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,22 +76,6 @@ public class PreferenceCompatActivity extends AppCompatActivity {
         }
 
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.github) {
-            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.github_url)));
-            startActivity(i);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
 }
