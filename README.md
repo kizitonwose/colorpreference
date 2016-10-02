@@ -70,7 +70,6 @@ Just like every other preference object, you add it to the XML file of your Pref
 
 ##### Support Preference-v7/v14 usage
 
-
 ```xml
 <android.support.v7.preference.PreferenceScreen> 
 
@@ -125,22 +124,46 @@ The custom picker in the sample uses the [Lobster Color Picker](https://github.c
 
 ## Extras
 
-If you want to use the inbuilt color picker in any activity as a simple color picker, you can use the `ColorDialog.Builder` class. Note that this is outside the scope of the library as the main target is the Preference screen.
+If you want to use the inbuilt color picker in any activity as a simple color picker, you can use the `ColorDialog.Builder` class. A working sample is also included in the [sample](/sample/) module.
 
 ```
+//The context shuould be Activity which implements ColorDialog.OnColorSelectedListener
 new ColorDialog.Builder(this)
 		.setColorShape(ColorShape.CIRCLE) //CIRCLE or SQUARE
 		.setColorChoices(R.array.color_choices) //an array of colors
 		.setSelectedColor(Color.GREEN) //the checked color
-		.setColorSelectedListener(new ColorDialog.OnColorSelectedListener() {
-			@Override
-			public void onColorSelected(int newColor) {
-			//use the selected color
-			}
-		}).show();
+		.setTag("TAG") // tags can be useful when multiple components use the picker within an activity
+		.show();
 
 ```
 
+Your activity should implement `ColorDialog.OnColorSelectedListener`
+```
+public class ExampleActivity implements ColorDialog.OnColorSelectedListener {
+
+	// set these tags when building the color picker dialog
+	// if you have only one picker in an Activity, you don't need a tag
+	private final String TOOLBAR_PICKER_TAG = "toolbar";
+    private final String BACKGROUND_PICKER_TAG = "background";
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        // activity initialization code
+    }
+
+    @Override
+    public void onColorSelected(int newColor, String tag) {
+		switch (tag){
+			case TOOLBAR_PICKER_TAG:
+				//change the toolbar color with newColor
+				break;
+			case BACKGROUND_PICKER_TAG:
+				//change the activity background color with newColor
+				break;
+        }
+    }
+}
+```
 
 ## Changelog
 
@@ -149,14 +172,14 @@ See the [changelog](/CHANGELOG.md) file.
 
 ## Credits
 
-Original code belongs to [Roman Nurik](https://github.com/romannurik) of [Google](https://github.com/google), I did some additions like the view size, color shape, support-preference-v7/v14 usage, the ability to use a custom color picker and usage of inbuilt color picker outside the preference screen(more to come). I have also made it available as a Gradle dependency for easy usage.
+Original code belongs to [Roman Nurik](https://github.com/romannurik) of [Google](https://github.com/google), I did some additions like the view size, color shape, support-preference-v7/v14 usage, the ability to use a custom color picker in the preference screen and usage of the inbuilt color picker dialog in any activity. I have also made it available as a Gradle dependency for easy usage.
 
 
 ## License
 
 ```
-Copyright (C) 2016 Roman Nurik
 Copyright (C) 2016 Kizito Nwose
+Copyright (C) 2016 Roman Nurik
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

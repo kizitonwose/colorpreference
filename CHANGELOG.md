@@ -1,6 +1,6 @@
 Change Log
 ==========
-Version 1.0.2 *(2016-10-01)*
+Version 1.0.2 *(2016-10-02)*
 ----------------------------
 
 - The inbuilt color picker can now be used in any activity.
