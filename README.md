@@ -9,7 +9,7 @@ An Android library for creating a nice color picker in the preference screen. Yo
 
 ## Preview
 
-<img src="/art/screenshot1.png" alt="ExampleMain" width="240"> <img src="/art/screenshot2.png" alt="ExampleCircle" width="240"> <img src="/art/screenshot3.png" alt="ExampleSquare" width="240">
+<img src="/art/screenshot_1.png" alt="ExampleMain" width="240"> <img src="/art/screenshot_2.png" alt="ExampleCircle" width="240"> <img src="/art/screenshot_3.png" alt="ExampleSquare" width="240">
 
 Get the sample apk [here](https://github.com/kizitonwose/colorpreference/releases/download/1.0.2/sample-1.0.2.apk) 
 
