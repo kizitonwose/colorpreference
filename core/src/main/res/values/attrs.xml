@@ -4,7 +4,7 @@
     <!--<attr name="itemLayout" format="reference" />-->
     <attr name="colorChoices" format="reference" />
     <attr name="numColumns" format="integer" />
-    <attr name="showDialog" format="boolean"/>
+    <attr name="showDialog" format="boolean" />
     <attr name="colorShape" format="enum">
         <enum name="circle" value="1" />
         <enum name="square" value="2" />
@@ -18,9 +18,9 @@
     <declare-styleable name="ColorPreference">
         <attr name="colorChoices" />
         <attr name="numColumns" />
-        <attr name="colorShape"/>
-        <attr name="viewSize"/>
-        <attr name="showDialog"/>
+        <attr name="colorShape" />
+        <attr name="viewSize" />
+        <attr name="showDialog" />
 
     </declare-styleable>
 

@@ -4,9 +4,9 @@
     <declare-styleable name="ColorPreferenceCompat">
         <attr name="colorChoices" />
         <attr name="numColumns" />
-        <attr name="colorShape"/>
-        <attr name="viewSize"/>
-        <attr name="showDialog"/>
+        <attr name="colorShape" />
+        <attr name="viewSize" />
+        <attr name="showDialog" />
 
     </declare-styleable>
 

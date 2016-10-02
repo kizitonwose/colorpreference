@@ -16,8 +16,7 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="38dp"
-    android:layout_height="38dp"
-    >
+    android:layout_height="38dp">
 
     <ImageView
         android:id="@+id/color_view"
