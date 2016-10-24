@@ -172,7 +172,7 @@ See the [changelog](/CHANGELOG.md) file.
 
 ## Credits
 
-Original code belongs to [Roman Nurik](https://github.com/romannurik) of [Google](https://github.com/google), I did some additions like the view size, color shape, support-preference-v7/v14 usage, the ability to use a custom color picker in the preference screen and usage of the inbuilt color picker dialog in any activity. I have also made it available as a Gradle dependency for easy usage.
+Thanks to [Roman Nurik](https://github.com/romannurik) for his initial implementation.
 
 
 ## License
