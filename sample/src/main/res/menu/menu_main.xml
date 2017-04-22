@@ -6,6 +6,6 @@
         android:orderInCategory="1"
         android:title="GitHub"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/github_circle" />
+        android:icon="@drawable/ic_github_circle_white_24dp"/>
 
 </menu>
