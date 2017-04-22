@@ -4,4 +4,5 @@
     <string name="colorText">This activity shows how to use the inbuilt color picker anywhere in your app.
         Click the button below to change the toolbar color.
         Click the Floating Action Button to change its color.</string>
+    <string name="button_text">Change toolbar color</string>
 </resources>
