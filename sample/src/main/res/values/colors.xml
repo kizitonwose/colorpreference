@@ -12,6 +12,14 @@
     <color name="color_2">#ffc107</color>
     <color name="color_3">#e91e63</color>
 
+    <!--You can also use color references-->
+    <array name="color_references">
+        <item>@color/color_1</item>
+        <item>@color/color_2</item>
+        <item>@color/color_3</item>
+    </array>
+
+
     <string-array name="color_choices">
         <item>#f44336</item>
         <item>#e91e63</item>
@@ -55,4 +63,5 @@
         <item>#616161</item>
         <item>#455a64</item>
     </string-array>
+
 </resources>
