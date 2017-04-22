@@ -4,14 +4,15 @@ An Android library for creating a nice color picker in the preference screen. Yo
 
 [![JitPack](https://jitpack.io/v/kizitonwose/colorpreference.svg)](https://jitpack.io/#kizitonwose/colorpreference) 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Color%20Preference-brightgreen.svg)](https://android-arsenal.com/details/1/4401) 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0) 
+[![API](https://img.shields.io/badge/API-14%2B-9C27B0.svg)](https://android-arsenal.com/api?level=14)
 
 
 ## Preview
 
 <img src="/art/screenshot_1.png" alt="ExampleMain" width="240"> <img src="/art/screenshot_2.png" alt="ExampleCircle" width="240"> <img src="/art/screenshot_3.png" alt="ExampleSquare" width="240">
 
-Get the sample apk [here](https://github.com/kizitonwose/colorpreference/releases/download/1.0.2/sample-1.0.2.apk) 
+Get the sample apk [here](https://github.com/kizitonwose/colorpreference/releases/download/1.0.3/sample-1.0.3.apk) 
 
 Also checkout the sample module [here](/sample/)
 
@@ -34,14 +35,14 @@ Add this to your app `build.gradle`:
 
 ```groovy
 dependencies {
-	compile 'com.github.kizitonwose.colorpreference:core:1.0.2'
+	compile 'com.github.kizitonwose.colorpreference:core:1.0.3'
 }
 ```
 If you are using the support-preference-v7/v14 library, you should use this in your app `build.gradle` instead:
 
 ```groovy
 dependencies {
-	compile 'com.github.kizitonwose.colorpreference:support:1.0.2'
+	compile 'com.github.kizitonwose.colorpreference:support:1.0.3'
 }
 ```
 
@@ -95,11 +96,11 @@ Now you can use the custom attributes. All custom attributes are available for t
 	android:key="@string/pref_key"
 	android:summary="@string/pref_summary"
 	android:title="@string/pref_title"
-	app:colorShape="square"
+	app:colorShape="circle"
 	app:colorChoices="@array/color_choices"
 	app:viewSize="large"
-	app:numColumns="5
-	app:showDialog="false" />
+	app:numColumns="5"
+	app:showDialog="true" />
 ```
 
 
@@ -117,9 +118,9 @@ Now you can use the custom attributes. All custom attributes are available for t
 ### Custom Picker sample
 
 You can find a working example of how to use a custom color picker in the included [sample](/sample/) module. 
-Actually, all you have to do is include the `app:showDialog="false"` in the preference item to suppress the inbuilt picker, then call the `setValue(int newColor)` method of the `ColorPreference`(or `ColorPreferenceCompat`) class and pass in the color int from the custom color picker.
+Actually, all you have to do is include `app:showDialog="false"` in the preference item to suppress the inbuilt picker, then when you get your color from the custom picker, call `setValue(int newColor)` method of the `ColorPreference`(or `ColorPreferenceCompat`) class and pass in the color. This saves the color and updates the view accordingly.
 
-The custom picker in the sample uses the [Lobster Color Picker](https://github.com/LarsWerkman/Lobsterpicker) Library. You can use any color picker that is available on Android.
+The custom picker in the sample uses the [Lobster Color Picker](https://github.com/LarsWerkman/Lobsterpicker) Library. You can use any color picker of your choice.
 
 
 ## Extras
@@ -170,7 +171,7 @@ public class ExampleActivity extends Activity implements ColorDialog.OnColorSele
 See the [changelog](/CHANGELOG.md) file.
 
 
-## Credits
+## Thanks
 
 Thanks to [Roman Nurik](https://github.com/romannurik) for his initial implementation.
 
@@ -179,7 +180,6 @@ Thanks to [Roman Nurik](https://github.com/romannurik) for his initial implement
 
 ```
 Copyright (C) 2016 Kizito Nwose
-Copyright (C) 2016 Roman Nurik
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

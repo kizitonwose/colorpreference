@@ -68,11 +68,11 @@ public class ColorDialog extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
-        if (activity instanceof OnColorSelectedListener) {
-            setOnColorSelectedListener((OnColorSelectedListener) activity);
+        if (context instanceof OnColorSelectedListener) {
+            setOnColorSelectedListener((OnColorSelectedListener) context);
         } else {
             repopulateItems();
         }
