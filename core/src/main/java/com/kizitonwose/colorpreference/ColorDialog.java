@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.ArrayRes;
@@ -211,17 +210,9 @@ public class ColorDialog extends DialogFragment {
 
         public ColorDialog show() {
             ColorDialog dialog = build();
-            dialog.show(resolveContext(context).getFragmentManager(), tag == null ? String.valueOf(System.currentTimeMillis()) : tag);
+            dialog.show(Utils.resolveContext(context).getFragmentManager(), tag == null ? String.valueOf(System.currentTimeMillis()) : tag);
             return dialog;
         }
 
-        protected Activity resolveContext(Context context) {
-            if (context instanceof Activity) {
-                return (Activity) context;
-            } else if (context instanceof ContextWrapper) {
-                return resolveContext(((ContextWrapper) context).getBaseContext());
-            }
-            return null;
-        }
     }
 }

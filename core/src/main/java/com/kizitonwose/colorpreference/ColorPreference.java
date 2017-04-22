@@ -1,6 +1,5 @@
 package com.kizitonwose.colorpreference;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.preference.Preference;
@@ -73,13 +72,8 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
     protected void onClick() {
         super.onClick();
         if (showDialog) {
-            ColorDialog fragment = ColorDialog.newInstance(numColumns, colorShape, colorChoices, getValue());
-            fragment.setOnColorSelectedListener(this);
-
-            Activity activity = (Activity) getContext();
-            activity.getFragmentManager().beginTransaction()
-                    .add(fragment, getFragmentTag())
-                    .commit();
+            ColorUtils.showDialog(getContext(), this, getFragmentTag(),
+                    numColumns, colorShape, colorChoices, getValue());
         }
     }
 
@@ -88,13 +82,7 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
         super.onAttachedToActivity();
         //helps during activity re-creation
         if (showDialog) {
-            Activity activity = (Activity) getContext();
-            ColorDialog fragment = (ColorDialog) activity
-                    .getFragmentManager().findFragmentByTag(getFragmentTag());
-            if (fragment != null) {
-                // re-bind preference to fragment
-                fragment.setOnColorSelectedListener(this);
-            }
+            ColorUtils.attach(getContext(), this, getFragmentTag());
         }
     }
 

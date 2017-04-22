@@ -1,5 +1,6 @@
 package com.kizitonwose.colorpreference;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -78,4 +79,27 @@ public class ColorUtils {
 
         return colorChoices;
     }
+
+    public static void showDialog(Context context, ColorDialog.OnColorSelectedListener listener, String tag,
+                                  int numColumns, ColorShape colorShape, int[] colorChoices, int selectedColorValue) {
+        ColorDialog fragment = ColorDialog.newInstance(numColumns, colorShape, colorChoices, selectedColorValue);
+        fragment.setOnColorSelectedListener(listener);
+
+        Activity activity = Utils.resolveContext(context);
+        activity.getFragmentManager().beginTransaction()
+                .add(fragment, tag)
+                .commit();
+    }
+
+    public static void attach(Context context, ColorDialog.OnColorSelectedListener listener, String tag) {
+        Activity activity = Utils.resolveContext(context);
+        ColorDialog fragment = (ColorDialog) activity
+                .getFragmentManager().findFragmentByTag(tag);
+        if (fragment != null) {
+            // re-bind preference to fragment
+            fragment.setOnColorSelectedListener(listener);
+        }
+    }
+
+
 }

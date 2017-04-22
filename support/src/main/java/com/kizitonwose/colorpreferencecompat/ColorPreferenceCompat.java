@@ -1,8 +1,6 @@
 package com.kizitonwose.colorpreferencecompat;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.res.TypedArray;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceViewHolder;
@@ -82,14 +80,8 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
     protected void onClick() {
         super.onClick();
         if (showDialog) {
-            ColorDialog fragment = ColorDialog.newInstance(numColumns, colorShape, colorChoices, getValue());
-            fragment.setOnColorSelectedListener(this);
-            ContextWrapper context = (ContextWrapper) getContext();
-            Activity activity = (Activity) context.getBaseContext();
-            activity.getFragmentManager().beginTransaction()
-                    .add(fragment, getFragmentTag())
-                    .commit();
-
+            ColorUtils.showDialog(getContext(), this, getFragmentTag(),
+                    numColumns, colorShape, colorChoices, getValue());
         }
     }
 
@@ -98,14 +90,7 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
         super.onAttached();
         //helps during activity re-creation
         if (showDialog) {
-            ContextWrapper context = (ContextWrapper) getContext();
-            Activity activity = (Activity) context.getBaseContext();
-            ColorDialog fragment = (ColorDialog) activity
-                    .getFragmentManager().findFragmentByTag(getFragmentTag());
-            if (fragment != null) {
-                // re-bind preference to fragment
-                fragment.setOnColorSelectedListener(this);
-            }
+            ColorUtils.attach(getContext(), this, getFragmentTag());
         }
     }
 
