@@ -16,6 +16,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 
 /**
  * Created by Kizito Nwose on 9/28/2016.
@@ -103,7 +104,7 @@ public class ColorDialog extends DialogFragment {
             View itemView = LayoutInflater.from(context)
                     .inflate(R.layout.grid_item_color, colorGrid, false);
 
-            ColorUtils.setColorViewValue(itemView.findViewById(R.id.color_view), color,
+            ColorUtils.setColorViewValue((ImageView) itemView.findViewById(R.id.color_view), color,
                     color == selectedColorValue, colorShape);
 
             itemView.setClickable(true);

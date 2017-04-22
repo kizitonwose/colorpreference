@@ -8,7 +8,7 @@ import android.graphics.Color;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
-import android.view.View;
+import android.widget.ImageView;
 
 import com.kizitonwose.colorpreference.ColorDialog;
 import com.kizitonwose.colorpreference.ColorShape;
@@ -19,12 +19,11 @@ import com.kizitonwose.colorpreference.PreviewSize;
  * Created by Kizito Nwose on 9/26/2016.
  */
 public class ColorPreferenceCompat extends Preference implements ColorDialog.OnColorSelectedListener {
-    private int[] mColorChoices = {};
-    private int mValue = 0;
-    private int mItemLayoutId = R.layout.pref_color_layout;
-    private int mItemLayoutLargeId = R.layout.pref_color_layout_large;
-    private int mNumColumns = 5;
-    private View mPreviewView;
+    private int[] colorChoices = {};
+    private int value = 0;
+    private int itemLayoutId = R.layout.pref_color_layout;
+    private int itemLayoutLargeId = R.layout.pref_color_layout_large;
+    private int numColumns = 5;
     private ColorShape colorShape = ColorShape.CIRCLE;
     private boolean showDialog = true;
 
@@ -49,7 +48,7 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
 
         PreviewSize previewSize = PreviewSize.NORMAL;
         try {
-            mNumColumns = a.getInteger(R.styleable.ColorPreferenceCompat_numColumns, mNumColumns);
+            numColumns = a.getInteger(R.styleable.ColorPreferenceCompat_numColumns, numColumns);
             colorShape = ColorShape.getShape(a.getInteger(R.styleable.ColorPreferenceCompat_colorShape, 1));
             previewSize = PreviewSize.getSize(a.getInteger(R.styleable.ColorPreferenceCompat_viewSize, 1));
             showDialog = a.getBoolean(R.styleable.ColorPreferenceCompat_showDialog, true);
@@ -58,29 +57,29 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
             if (choicesResId > 0) {
                 String[] choices = a.getResources().getStringArray(choicesResId);
 
-                mColorChoices = new int[choices.length];
+                colorChoices = new int[choices.length];
                 for (int i = 0; i < choices.length; i++) {
-                    mColorChoices[i] = Color.parseColor(choices[i]);
+                    colorChoices[i] = Color.parseColor(choices[i]);
                 }
             }
 
         } finally {
             a.recycle();
         }
-        setWidgetLayoutResource(previewSize == PreviewSize.NORMAL ? mItemLayoutId : mItemLayoutLargeId);
+        setWidgetLayoutResource(previewSize == PreviewSize.NORMAL ? itemLayoutId : itemLayoutLargeId);
 
     }
 
     @Override
     public void onBindViewHolder(PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
-        mPreviewView = holder.findViewById(R.id.color_view);
-        ColorUtils.setColorViewValue(mPreviewView, mValue, false, colorShape);
+        ImageView previewView = (ImageView) holder.findViewById(R.id.color_view);
+        ColorUtils.setColorViewValue(previewView, value, false, colorShape);
     }
 
     public void setValue(int value) {
         if (callChangeListener(value)) {
-            mValue = value;
+            this.value = value;
             persistInt(value);
             notifyChanged();
         }
@@ -90,14 +89,11 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
     @Override
     protected void onClick() {
         super.onClick();
-
         if (showDialog) {
-            ColorDialog fragment = ColorDialog.newInstance(mNumColumns, colorShape, mColorChoices, getValue());
+            ColorDialog fragment = ColorDialog.newInstance(numColumns, colorShape, colorChoices, getValue());
             fragment.setOnColorSelectedListener(this);
-
             ContextWrapper context = (ContextWrapper) getContext();
             Activity activity = (Activity) context.getBaseContext();
-
             activity.getFragmentManager().beginTransaction()
                     .add(fragment, getFragmentTag())
                     .commit();
@@ -108,12 +104,10 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
     @Override
     public void onAttached() {
         super.onAttached();
-
         //helps during activity re-creation
         if (showDialog) {
             ContextWrapper context = (ContextWrapper) getContext();
             Activity activity = (Activity) context.getBaseContext();
-
             ColorDialog fragment = (ColorDialog) activity
                     .getFragmentManager().findFragmentByTag(getFragmentTag());
             if (fragment != null) {
@@ -138,7 +132,7 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
     }
 
     public int getValue() {
-        return mValue;
+        return value;
     }
 
     @Override

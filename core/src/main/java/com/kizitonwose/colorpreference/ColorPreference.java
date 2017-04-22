@@ -7,15 +7,15 @@ import android.graphics.Color;
 import android.preference.Preference;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 
 
 public class ColorPreference extends Preference implements ColorDialog.OnColorSelectedListener {
-    private int[] mColorChoices = {};
-    private int mValue = 0;
-    private int mItemLayoutId = R.layout.pref_color_layout;
-    private int mItemLayoutLargeId = R.layout.pref_color_layout_large;
-    private int mNumColumns = 5;
-    private View mPreviewView;
+    private int[] colorChoices = {};
+    private int value = 0;
+    private int itemLayoutId = R.layout.pref_color_layout;
+    private int itemLayoutLargeId = R.layout.pref_color_layout_large;
+    private int numColumns = 5;
     private ColorShape colorShape = ColorShape.CIRCLE;
     private boolean showDialog = true;
 
@@ -40,8 +40,8 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
 
         PreviewSize previewSize = PreviewSize.NORMAL;
         try {
-            //mItemLayoutId = a.getResourceId(R.styleable.ColorPreference_itemLayout, mItemLayoutId);
-            mNumColumns = a.getInteger(R.styleable.ColorPreference_numColumns, mNumColumns);
+            //itemLayoutId = a.getResourceId(R.styleable.ColorPreference_itemLayout, itemLayoutId);
+            numColumns = a.getInteger(R.styleable.ColorPreference_numColumns, numColumns);
             colorShape = ColorShape.getShape(a.getInteger(R.styleable.ColorPreference_colorShape, 1));
             previewSize = PreviewSize.getSize(a.getInteger(R.styleable.ColorPreference_viewSize, 1));
             showDialog = a.getBoolean(R.styleable.ColorPreference_showDialog, true);
@@ -56,28 +56,28 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
             boolean isStringArray = choicesString[0] != null;
             int length = isStringArray ? choicesString.length : choicesInt.length;
 
-            mColorChoices = new int[length];
+            colorChoices = new int[length];
             for (int i = 0; i < length; i++) {
-                mColorChoices[i] = isStringArray ? Color.parseColor(choicesString[i]) : choicesInt[i];
+                colorChoices[i] = isStringArray ? Color.parseColor(choicesString[i]) : choicesInt[i];
             }
 
         } finally {
             a.recycle();
         }
 
-        setWidgetLayoutResource(previewSize == PreviewSize.NORMAL ? mItemLayoutId : mItemLayoutLargeId);
+        setWidgetLayoutResource(previewSize == PreviewSize.NORMAL ? itemLayoutId : itemLayoutLargeId);
     }
 
     @Override
     protected void onBindView(View view) {
         super.onBindView(view);
-        mPreviewView = view.findViewById(R.id.color_view);
-        ColorUtils.setColorViewValue(mPreviewView, mValue, false, colorShape);
+        ImageView previewView = (ImageView) view.findViewById(R.id.color_view);
+        ColorUtils.setColorViewValue(previewView, value, false, colorShape);
     }
 
     public void setValue(int value) {
         if (callChangeListener(value)) {
-            mValue = value;
+            this.value = value;
             persistInt(value);
             notifyChanged();
         }
@@ -86,9 +86,8 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
     @Override
     protected void onClick() {
         super.onClick();
-
         if (showDialog) {
-            ColorDialog fragment = ColorDialog.newInstance(mNumColumns, colorShape, mColorChoices, getValue());
+            ColorDialog fragment = ColorDialog.newInstance(numColumns, colorShape, colorChoices, getValue());
             fragment.setOnColorSelectedListener(this);
 
             Activity activity = (Activity) getContext();
@@ -101,7 +100,6 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
     @Override
     protected void onAttachedToActivity() {
         super.onAttachedToActivity();
-
         //helps during activity re-creation
         if (showDialog) {
             Activity activity = (Activity) getContext();
@@ -129,7 +127,7 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
     }
 
     public int getValue() {
-        return mValue;
+        return value;
     }
 
     @Override
