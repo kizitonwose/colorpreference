@@ -7,7 +7,6 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.ColorInt;
@@ -185,14 +184,7 @@ public class ColorDialog extends DialogFragment {
         }
 
         public Builder setColorChoices(@ArrayRes int colorChoicesRes) {
-            String[] choices = context.getResources().getStringArray(colorChoicesRes);
-
-            int[] colors = new int[choices.length];
-            for (int i = 0; i < choices.length; i++) {
-                colors[i] = Color.parseColor(choices[i]);
-            }
-
-            this.colorChoices = colors;
+            this.colorChoices = ColorUtils.extractColorArray(colorChoicesRes, context);
             return this;
         }
 

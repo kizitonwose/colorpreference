@@ -3,7 +3,6 @@ package com.kizitonwose.colorpreference;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.preference.Preference;
 import android.util.AttributeSet;
 import android.view.View;
@@ -40,26 +39,13 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
 
         PreviewSize previewSize = PreviewSize.NORMAL;
         try {
-            //itemLayoutId = a.getResourceId(R.styleable.ColorPreference_itemLayout, itemLayoutId);
             numColumns = a.getInteger(R.styleable.ColorPreference_numColumns, numColumns);
             colorShape = ColorShape.getShape(a.getInteger(R.styleable.ColorPreference_colorShape, 1));
             previewSize = PreviewSize.getSize(a.getInteger(R.styleable.ColorPreference_viewSize, 1));
             showDialog = a.getBoolean(R.styleable.ColorPreference_showDialog, true);
             int choicesResId = a.getResourceId(R.styleable.ColorPreference_colorChoices,
                     R.array.default_color_choice_values);
-
-            String[] choicesString = a.getResources().getStringArray(choicesResId);
-            int[] choicesInt = a.getResources().getIntArray(choicesResId);
-
-            // If user uses color reference(i.e. @color/color_choice) in the array,
-            // the choicesString contains null values. We use the choicesInt in such case.
-            boolean isStringArray = choicesString[0] != null;
-            int length = isStringArray ? choicesString.length : choicesInt.length;
-
-            colorChoices = new int[length];
-            for (int i = 0; i < length; i++) {
-                colorChoices[i] = isStringArray ? Color.parseColor(choicesString[i]) : choicesInt[i];
-            }
+            colorChoices = ColorUtils.extractColorArray(choicesResId, getContext());
 
         } finally {
             a.recycle();

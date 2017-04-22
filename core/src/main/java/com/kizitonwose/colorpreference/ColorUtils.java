@@ -1,11 +1,13 @@
 package com.kizitonwose.colorpreference;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
+import android.support.annotation.ArrayRes;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.ImageView;
@@ -60,4 +62,20 @@ public class ColorUtils {
                 11 * Color.blue(color)) / 100) <= BRIGHTNESS_THRESHOLD;
     }
 
+    public static int[] extractColorArray(@ArrayRes int arrayId, Context context) {
+        String[] choicesString = context.getResources().getStringArray(arrayId);
+        int[] choicesInt = context.getResources().getIntArray(arrayId);
+
+        // If user uses color reference(i.e. @color/color_choice) in the array,
+        // the choicesString contains null values. We use the choicesInt in such case.
+        boolean isStringArray = choicesString[0] != null;
+        int length = isStringArray ? choicesString.length : choicesInt.length;
+
+        int[] colorChoices = new int[length];
+        for (int i = 0; i < length; i++) {
+            colorChoices[i] = isStringArray ? Color.parseColor(choicesString[i]) : choicesInt[i];
+        }
+
+        return colorChoices;
+    }
 }

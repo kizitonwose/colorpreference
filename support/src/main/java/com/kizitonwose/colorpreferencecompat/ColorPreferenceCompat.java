@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
@@ -54,14 +53,7 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
             showDialog = a.getBoolean(R.styleable.ColorPreferenceCompat_showDialog, true);
             int choicesResId = a.getResourceId(R.styleable.ColorPreferenceCompat_colorChoices,
                     R.array.default_color_choice_values);
-            if (choicesResId > 0) {
-                String[] choices = a.getResources().getStringArray(choicesResId);
-
-                colorChoices = new int[choices.length];
-                for (int i = 0; i < choices.length; i++) {
-                    colorChoices[i] = Color.parseColor(choices[i]);
-                }
-            }
+            colorChoices = ColorUtils.extractColorArray(choicesResId, getContext());
 
         } finally {
             a.recycle();
