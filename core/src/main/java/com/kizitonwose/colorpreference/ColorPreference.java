@@ -47,13 +47,18 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
             showDialog = a.getBoolean(R.styleable.ColorPreference_showDialog, true);
             int choicesResId = a.getResourceId(R.styleable.ColorPreference_colorChoices,
                     R.array.default_color_choice_values);
-            if (choicesResId > 0) {
-                String[] choices = a.getResources().getStringArray(choicesResId);
 
-                mColorChoices = new int[choices.length];
-                for (int i = 0; i < choices.length; i++) {
-                    mColorChoices[i] = Color.parseColor(choices[i]);
-                }
+            String[] choicesString = a.getResources().getStringArray(choicesResId);
+            int[] choicesInt = a.getResources().getIntArray(choicesResId);
+
+            // If user uses color reference(i.e. @color/color_choice) in the array,
+            // the choicesString contains null values. We use the choicesInt in such case.
+            boolean isStringArray = choicesString[0] != null;
+            int length = isStringArray ? choicesString.length : choicesInt.length;
+
+            mColorChoices = new int[length];
+            for (int i = 0; i < length; i++) {
+                mColorChoices[i] = isStringArray ? Color.parseColor(choicesString[i]) : choicesInt[i];
             }
 
         } finally {
