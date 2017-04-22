@@ -1,5 +1,11 @@
 Change Log
 ==========
+Version 1.0.3 *(2017-04-22)*
+----------------------------
+
+- Fix NullPointerException when the array referenced by `colorChoices` attribute contains color references instead of color strings.
+- Update internal dependencies.
+
 Version 1.0.2 *(2016-10-02)*
 ----------------------------
 
