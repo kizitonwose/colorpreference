@@ -28,8 +28,8 @@ dependencies {
     compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     compile "com.android.support:design:$rootProject.supportLibraryVersion"
 
-    //compile 'com.github.kizitonwose.colorpreference:core:1.0.3'
-    //compile 'com.github.kizitonwose.colorpreference:support:1.0.3'
+    //compile 'com.github.kizitonwose.colorpreference:core:1.0.4'
+    //compile 'com.github.kizitonwose.colorpreference:support:1.0.4'
     //The support module also contains the standard preference
     compile project(':support')
 
