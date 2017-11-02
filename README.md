@@ -12,7 +12,7 @@ An Android library for creating a nice color picker in the preference screen. Yo
 
 <img src="/art/screenshot_1.png" alt="ExampleMain" width="240"> <img src="/art/screenshot_2.png" alt="ExampleCircle" width="240"> <img src="/art/screenshot_3.png" alt="ExampleSquare" width="240">
 
-Get the sample apk [here](https://github.com/kizitonwose/colorpreference/releases/download/1.0.3/sample-1.0.3.apk) 
+Get the sample apk [here](https://github.com/kizitonwose/colorpreference/releases/download/1.0.4/sample-1.0.4.apk) 
 
 Also checkout the sample module [here](/sample/)
 
@@ -35,14 +35,14 @@ Add this to your app `build.gradle`:
 
 ```groovy
 dependencies {
-	compile 'com.github.kizitonwose.colorpreference:core:1.0.3'
+	compile 'com.github.kizitonwose.colorpreference:core:1.0.4'
 }
 ```
 If you are using the support-preference-v7/v14 library, you should use this in your app `build.gradle` instead:
 
 ```groovy
 dependencies {
-	compile 'com.github.kizitonwose.colorpreference:support:1.0.3'
+	compile 'com.github.kizitonwose.colorpreference:support:1.0.4'
 }
 ```
 
