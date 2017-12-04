@@ -25,11 +25,11 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    compile "com.android.support:design:$rootProject.supportLibraryVersion"
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:design:$supportLibraryVersion"
 
-    //compile 'com.github.kizitonwose.colorpreference:core:1.0.4'
-    //compile 'com.github.kizitonwose.colorpreference:support:1.0.4'
+    //compile 'com.github.kizitonwose.colorpreference:core:1.0.5'
+    //compile 'com.github.kizitonwose.colorpreference:support:1.0.5'
     //The support module also contains the standard preference
     compile project(':support')
 
