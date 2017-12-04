@@ -54,8 +54,8 @@ public class PreferenceCompatActivity extends BaseActivity {
             View colorView = inflater.inflate(R.layout.dialog_color, null);
 
             int color = PreferenceManager.getDefaultSharedPreferences(getActivity()).getInt(CUSTOM_PICKER_PREF_KEY, Color.YELLOW);
-            final LobsterPicker lobsterPicker = (LobsterPicker) colorView.findViewById(R.id.lobsterPicker);
-            LobsterShadeSlider shadeSlider = (LobsterShadeSlider) colorView.findViewById(R.id.shadeSlider);
+            final LobsterPicker lobsterPicker = colorView.findViewById(R.id.lobsterPicker);
+            LobsterShadeSlider shadeSlider = colorView.findViewById(R.id.shadeSlider);
 
             lobsterPicker.addDecorator(shadeSlider);
             lobsterPicker.setColorHistoryEnabled(true);
