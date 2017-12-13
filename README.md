@@ -10,11 +10,12 @@ An Android library for creating a nice color picker in the preference screen. Yo
 
 ## Preview
 
-<img src="/art/screenshot_1.png" alt="ExampleMain" width="240"> <img src="/art/screenshot_2.png" alt="ExampleCircle" width="240"> <img src="/art/screenshot_3.png" alt="ExampleSquare" width="240">
+<img src="https://raw.githubusercontent.com/kizitonwose/colorpreference/master/art/screenshot_1.png" alt="ExampleMain" width="240"> <img src="https://raw.githubusercontent.com/kizitonwose/colorpreference/master/art/screenshot_2.png" alt="ExampleCircle" width="240"> <img src="https://raw.githubusercontent.com/kizitonwose/colorpreference/master/art/screenshot_3.png" alt="ExampleSquare" width="240">
 
 Get the sample apk [here](https://github.com/kizitonwose/colorpreference/releases/download/1.0.5/sample-1.0.5.apk)
 
-Also checkout the sample module [here](/sample/)
+Also checkout the sample module [here][sample-url]
+
 
 ## Setup
 
@@ -46,8 +47,8 @@ dependencies {
 }
 ```
 
-## Usage
 
+## Usage
 
 Just like every other preference object, you add it to the XML file of your Preference screen.
 
@@ -103,6 +104,11 @@ Now you can use the custom attributes. All custom attributes are available for t
 	app:showDialog="true" />
 ```
 
+Two important methods in the `ColorPreference` and `ColorPreferenceCompat` classes: 
+
+- Get the color value: **`getValue()`**
+ 
+- Set the color value and update the preference view: **`setValue(int newColor)`**
 
 ### Attributes
 
@@ -117,7 +123,7 @@ Now you can use the custom attributes. All custom attributes are available for t
 
 ### Custom Picker sample
 
-You can find a working example of how to use a custom color picker in the included [sample](/sample/) module. 
+You can find a working example of how to use a custom color picker in the included [sample][sample-url] module. 
 Actually, all you have to do is include `app:showDialog="false"` in the preference item to suppress the inbuilt picker, then when you get your color from the custom picker, call `setValue(int newColor)` method of the `ColorPreference`(or `ColorPreferenceCompat`) class and pass in the color. This saves the color and updates the view accordingly.
 
 The custom picker in the sample uses the [Lobster Color Picker](https://github.com/LarsWerkman/Lobsterpicker) Library. You can use any color picker of your choice.
@@ -125,7 +131,7 @@ The custom picker in the sample uses the [Lobster Color Picker](https://github.c
 
 ## Extras
 
-If you want to use the inbuilt color picker in any activity as a simple color picker, you can use the `ColorDialog.Builder` class. A working sample is also included in the [sample](/sample/) module.
+If you want to use the inbuilt color picker in any activity as a simple color picker, you can use the `ColorDialog.Builder` class. A working sample is also included in the [sample][sample-url] module.
 
 ```java
 // The context shuould be an Activity which implements ColorDialog.OnColorSelectedListener
@@ -139,6 +145,7 @@ new ColorDialog.Builder(this)
 ```
 
 Activity usage example
+
 ```java
 public class ExampleActivity extends Activity implements ColorDialog.OnColorSelectedListener {
 
@@ -166,9 +173,10 @@ public class ExampleActivity extends Activity implements ColorDialog.OnColorSele
 }
 ```
 
+
 ## Changelog
 
-See the [changelog](/CHANGELOG.md) file.
+See the [changelog](https://github.com/kizitonwose/colorpreference/blob/master/CHANGELOG.md) file.
 
 
 ## Thanks
@@ -193,3 +201,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+[sample-url]: https://github.com/kizitonwose/colorpreference/tree/master/sample
