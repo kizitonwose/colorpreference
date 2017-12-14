@@ -2,6 +2,7 @@
 
 An Android library for creating a nice color picker in the preference screen. You can use the inbuilt picker or any other color picker of your choice. The library can be used with the standard preference classes or the support-preference-v7/v14 classes.
 
+[![Build Status](https://travis-ci.org/kizitonwose/colorpreference.svg?branch=master)](https://travis-ci.org/kizitonwose/colorpreference) 
 [![JitPack](https://jitpack.io/v/kizitonwose/colorpreference.svg)](https://jitpack.io/#kizitonwose/colorpreference) 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Color%20Preference-brightgreen.svg)](https://android-arsenal.com/details/1/4401) 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0) 
