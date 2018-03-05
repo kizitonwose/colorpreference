@@ -37,14 +37,14 @@ Add this to your app `build.gradle`:
 
 ```groovy
 dependencies {
-	implementation 'com.github.kizitonwose.colorpreference:core:1.0.5'
+	implementation 'com.github.kizitonwose.colorpreference:core:1.0.6'
 }
 ```
 If you are using the support-preference-v7/v14 library, you should use this in your app `build.gradle` instead:
 
 ```groovy
 dependencies {
-	implementation 'com.github.kizitonwose.colorpreference:support:1.0.5'
+	implementation 'com.github.kizitonwose.colorpreference:support:1.0.6'
 }
 ```
 
