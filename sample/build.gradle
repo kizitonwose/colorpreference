@@ -18,27 +18,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
 
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
-    compile "com.android.support:design:$supportLibraryVersion"
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
 
-    //compile 'com.github.kizitonwose.colorpreference:core:1.0.5'
-    //compile 'com.github.kizitonwose.colorpreference:support:1.0.5'
-    //The support module also contains the standard preference
-    compile project(':support')
+    //compile 'com.github.kizitonwose.colorpreference:core:1.0.6'
+    //compile 'com.github.kizitonwose.colorpreference:support:1.0.6'
+    implementation project(':core')
+    implementation project(':support')
 
     //This is the custom color picker library, you can use color picker of your choice.
-    compile 'com.larswerkman:lobsterpicker:1.0.1'
+    implementation 'com.larswerkman:lobsterpicker:1.0.1'
 
 
     //You don't need this to use the color preference library. This is only necessary for the
     //Preference theme in the ColorPreferenceCompat sample activity
-    compile "com.android.support:preference-v14:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:preference-v14:$rootProject.supportLibraryVersion"
 
 }
