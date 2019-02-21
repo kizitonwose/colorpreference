@@ -1,6 +1,6 @@
 # Color Preference
 
-An Android library for creating a nice color picker in the preference screen. You can use the inbuilt picker or any other color picker of your choice. The library can be used with the standard preference classes or the support-preference-v7/v14 classes.
+An Android library for creating a nice color picker in the preference screen. You can use the inbuilt picker or any other color picker of your choice. The library can be used with the standard preference classes or the AndroidX preference/legacy-preference-v14(support-preference-v7/v14) classes.
 
 [![Build Status](https://travis-ci.org/kizitonwose/colorpreference.svg?branch=master)](https://travis-ci.org/kizitonwose/colorpreference) 
 [![JitPack](https://jitpack.io/v/kizitonwose/colorpreference.svg)](https://jitpack.io/#kizitonwose/colorpreference) 
@@ -37,17 +37,17 @@ Add this to your app `build.gradle`:
 
 ```groovy
 dependencies {
-	implementation 'com.github.kizitonwose.colorpreference:core:1.0.6'
+	implementation 'com.github.kizitonwose.colorpreference:core:<latest-version>'
 }
 ```
-If you are using the support-preference-v7/v14 library, you should use this in your app `build.gradle` instead:
+If you are using the AndroidX preference/legacy-preference-v14 library, you should use this in your app `build.gradle` instead:
 
 ```groovy
 dependencies {
-	implementation 'com.github.kizitonwose.colorpreference:support:1.0.6'
+	implementation 'com.github.kizitonwose.colorpreference:support:<latest-version>'
 }
 ```
-
+##### Note: `<latest-version>` value can be found on the JitPack badge above the preview images.
 
 ## Usage
 
@@ -71,19 +71,22 @@ Just like every other preference object, you add it to the XML file of your Pref
 </PreferenceScreen>
 ```
 
-##### Support Preference-v7/v14 usage
+##### AndroidX preference/legacy-preference-v14
 
 ```xml
-<android.support.v7.preference.PreferenceScreen> 
+<androidx.preference.PreferenceScreen> 
 
 	<com.kizitonwose.colorpreferencecompat.ColorPreferenceCompat
 		android:defaultValue="@color/color_default"
 		android:key="@string/pref_key" />
-
-	<android.support.v7.preference.SwitchPreferenceCompat
+	
+    <androidx.preference.SwitchPreferenceCompat
+		... />
+	
+	<androidx.preference.SwitchPreferenceCompat
 		... />
 		
-</android.support.v7.preference.PreferenceScreen>
+</androidx.preference.PreferenceScreen>
 ```
 
 The default implementation is the circle color view. For custom settings, add the app namespace to your XML file:
