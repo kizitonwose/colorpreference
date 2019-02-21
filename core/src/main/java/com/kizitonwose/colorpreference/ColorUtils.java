@@ -8,7 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
-import android.support.annotation.ArrayRes;
+import androidx.annotation.ArrayRes;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.ImageView;
@@ -86,18 +86,22 @@ public class ColorUtils {
         fragment.setOnColorSelectedListener(listener);
 
         Activity activity = Utils.resolveContext(context);
-        activity.getFragmentManager().beginTransaction()
-                .add(fragment, tag)
-                .commit();
+        if (activity != null) {
+            activity.getFragmentManager()
+                    .beginTransaction()
+                    .add(fragment, tag)
+                    .commit();
+        }
     }
 
     public static void attach(Context context, ColorDialog.OnColorSelectedListener listener, String tag) {
         Activity activity = Utils.resolveContext(context);
-        ColorDialog fragment = (ColorDialog) activity
-                .getFragmentManager().findFragmentByTag(tag);
-        if (fragment != null) {
-            // re-bind preference to fragment
-            fragment.setOnColorSelectedListener(listener);
+        if (activity != null) {
+            ColorDialog fragment = (ColorDialog) activity.getFragmentManager().findFragmentByTag(tag);
+            if (fragment != null) {
+                // re-bind preference to fragment
+                fragment.setOnColorSelectedListener(listener);
+            }
         }
     }
 

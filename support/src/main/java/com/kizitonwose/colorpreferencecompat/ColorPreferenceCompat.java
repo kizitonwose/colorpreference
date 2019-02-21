@@ -2,8 +2,8 @@ package com.kizitonwose.colorpreferencecompat;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v7.preference.Preference;
-import android.support.v7.preference.PreferenceViewHolder;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -43,7 +43,7 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
         TypedArray a = getContext().getTheme().obtainStyledAttributes(
                 attrs, R.styleable.ColorPreferenceCompat, defStyle, defStyle);
 
-        PreviewSize previewSize = PreviewSize.NORMAL;
+        PreviewSize previewSize;
         try {
             numColumns = a.getInteger(R.styleable.ColorPreferenceCompat_numColumns, numColumns);
             colorShape = ColorShape.getShape(a.getInteger(R.styleable.ColorPreferenceCompat_colorShape, 1));
@@ -63,8 +63,10 @@ public class ColorPreferenceCompat extends Preference implements ColorDialog.OnC
     @Override
     public void onBindViewHolder(PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
-        ImageView previewView = (ImageView) holder.findViewById(R.id.color_view);
-        ColorUtils.setColorViewValue(previewView, value, false, colorShape);
+        ImageView colorView = (ImageView) holder.findViewById(R.id.color_view);
+        if (colorView != null) {
+            ColorUtils.setColorViewValue(colorView, value, false, colorShape);
+        }
     }
 
     public void setValue(int value) {

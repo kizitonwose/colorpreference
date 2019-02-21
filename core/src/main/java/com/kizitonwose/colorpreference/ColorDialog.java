@@ -7,9 +7,9 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
+import androidx.annotation.ArrayRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,7 +82,7 @@ public class ColorDialog extends DialogFragment {
         LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
         View rootView = layoutInflater.inflate(R.layout.dialog_colors, null);
 
-        colorGrid = (GridLayout) rootView.findViewById(R.id.color_grid);
+        colorGrid = rootView.findViewById(R.id.color_grid);
         colorGrid.setColumnCount(numColumns);
         repopulateItems();
 

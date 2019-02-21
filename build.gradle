@@ -4,7 +4,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.3.1'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
     }
 }
@@ -16,14 +16,18 @@ allprojects {
     }
 
     ext {
-        compileSdkVersion = 27
-        buildToolsVersion = '27.0.3'
-
         minSdkVersion = 14
-        targetSdkVersion = 27
-        versionCode = 7
-        versionName = '1.0.6'
-        supportLibraryVersion = '27.1.0'
+        compileSdkVersion = 28
+        targetSdkVersion = 28
+        buildToolsVersion = '28.0.3'
+        versionCode = 8
+        versionName = '1.1.0'
+
+        annotationVersion = '1.1.0-alpha01'
+        preferenceVersion = '1.1.0-alpha03'
+        preferencev14Version = '1.0.0'
+        appCompatVersion = '1.1.0-alpha02'
+        materialVersion = '1.1.0-alpha03'
     }
 }
 

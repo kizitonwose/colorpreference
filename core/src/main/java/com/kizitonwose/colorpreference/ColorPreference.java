@@ -36,7 +36,7 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
         TypedArray a = getContext().getTheme().obtainStyledAttributes(
                 attrs, R.styleable.ColorPreference, defStyle, defStyle);
 
-        PreviewSize previewSize = PreviewSize.NORMAL;
+        PreviewSize previewSize;
         try {
             numColumns = a.getInteger(R.styleable.ColorPreference_numColumns, numColumns);
             colorShape = ColorShape.getShape(a.getInteger(R.styleable.ColorPreference_colorShape, 1));
@@ -56,8 +56,10 @@ public class ColorPreference extends Preference implements ColorDialog.OnColorSe
     @Override
     protected void onBindView(View view) {
         super.onBindView(view);
-        ImageView previewView = (ImageView) view.findViewById(R.id.color_view);
-        ColorUtils.setColorViewValue(previewView, value, false, colorShape);
+        ImageView colorView = view.findViewById(R.id.color_view);
+        if (colorView != null) {
+            ColorUtils.setColorViewValue(colorView, value, false, colorShape);
+        }
     }
 
     public void setValue(int value) {
