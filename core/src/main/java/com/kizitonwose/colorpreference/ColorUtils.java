@@ -86,18 +86,22 @@ public class ColorUtils {
         fragment.setOnColorSelectedListener(listener);
 
         Activity activity = Utils.resolveContext(context);
-        activity.getFragmentManager().beginTransaction()
-                .add(fragment, tag)
-                .commit();
+        if (activity != null) {
+            activity.getFragmentManager()
+                    .beginTransaction()
+                    .add(fragment, tag)
+                    .commit();
+        }
     }
 
     public static void attach(Context context, ColorDialog.OnColorSelectedListener listener, String tag) {
         Activity activity = Utils.resolveContext(context);
-        ColorDialog fragment = (ColorDialog) activity
-                .getFragmentManager().findFragmentByTag(tag);
-        if (fragment != null) {
-            // re-bind preference to fragment
-            fragment.setOnColorSelectedListener(listener);
+        if (activity != null) {
+            ColorDialog fragment = (ColorDialog) activity.getFragmentManager().findFragmentByTag(tag);
+            if (fragment != null) {
+                // re-bind preference to fragment
+                fragment.setOnColorSelectedListener(listener);
+            }
         }
     }
 

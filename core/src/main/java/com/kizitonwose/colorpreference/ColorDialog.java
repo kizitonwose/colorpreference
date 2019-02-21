@@ -82,7 +82,7 @@ public class ColorDialog extends DialogFragment {
         LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
         View rootView = layoutInflater.inflate(R.layout.dialog_colors, null);
 
-        colorGrid = (GridLayout) rootView.findViewById(R.id.color_grid);
+        colorGrid = rootView.findViewById(R.id.color_grid);
         colorGrid.setColumnCount(numColumns);
         repopulateItems();
 

@@ -9,9 +9,9 @@ import androidx.annotation.Nullable;
  * @author Kizito Nwose
  */
 
-public class Utils {
+class Utils {
     @Nullable
-    public static Activity resolveContext(Context context) {
+    static Activity resolveContext(Context context) {
         if (context instanceof Activity) {
             return (Activity) context;
         } else if (context instanceof ContextWrapper) {
