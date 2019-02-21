@@ -22,6 +22,6 @@ android {
 }
 
 dependencies {
-    api "com.android.support:preference-v7:$supportLibraryVersion"
+    api "androidx.preference:preference:1.1.0-alpha03"
     implementation project(':core')
 }

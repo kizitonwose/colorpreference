@@ -26,8 +26,8 @@ android {
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
-    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation "androidx.appcompat:appcompat:1.1.0-alpha02"
+    implementation "com.google.android.material:material:1.1.0-alpha03"
 
     //compile 'com.github.kizitonwose.colorpreference:core:1.0.6'
     //compile 'com.github.kizitonwose.colorpreference:support:1.0.6'
@@ -40,6 +40,6 @@ dependencies {
 
     //You don't need this to use the color preference library. This is only necessary for the
     //Preference theme in the ColorPreferenceCompat sample activity
-    implementation "com.android.support:preference-v14:$rootProject.supportLibraryVersion"
+    implementation "androidx.legacy:legacy-preference-v14:1.0.0"
 
 }

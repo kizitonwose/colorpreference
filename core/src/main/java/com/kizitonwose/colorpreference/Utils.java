@@ -3,7 +3,7 @@ package com.kizitonwose.colorpreference;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * @author Kizito Nwose
