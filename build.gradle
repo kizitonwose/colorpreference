@@ -21,7 +21,13 @@ allprojects {
         targetSdkVersion = 28
         buildToolsVersion = '28.0.3'
         versionCode = 8
-        versionName = '1.0.7'
+        versionName = '1.1.0'
+
+        annotationVersion = '1.1.0-alpha01'
+        preferenceVersion = '1.1.0-alpha03'
+        preferencev14Version = '1.0.0'
+        appCompatVersion = '1.1.0-alpha02'
+        materialVersion = '1.1.0-alpha03'
     }
 }
 

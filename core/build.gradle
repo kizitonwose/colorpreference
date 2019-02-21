@@ -22,5 +22,5 @@ android {
 }
 
 dependencies {
-    api "androidx.annotation:annotation:1.1.0-alpha01"
+    api "androidx.annotation:annotation:$annotationVersion"
 }
